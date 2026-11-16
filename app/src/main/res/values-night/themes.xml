@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Base.Theme.ZitounaProject" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/olive_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/olive_100</item>
+        <item name="colorOnPrimaryContainer">@color/olive_900</item>
+        <item name="colorSecondary">@color/gold</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondaryContainer">@color/gold_light</item>
+        <item name="colorOnSecondaryContainer">@color/gold_dark</item>
+        <item name="colorTertiary">@color/gold</item>
+        <item name="android:colorBackground">@color/cream</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/ink</item>
+        <item name="colorOnSurfaceVariant">@color/muted</item>
+        <item name="colorOutline">@color/stroke</item>
+        <item name="colorError">@color/error</item>
+        <item name="android:windowBackground">@color/cream</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="materialButtonStyle">@style/Widget.Zitouna.Button</item>
+        <item name="materialButtonOutlinedStyle">@style/Widget.Zitouna.Button.Outlined</item>
+        <item name="textInputStyle">@style/Widget.Zitouna.TextInput</item>
+        <item name="materialCardViewStyle">@style/Widget.Zitouna.Card</item>
+    </style>
+
+    <style name="Theme.ZitounaProject" parent="Base.Theme.ZitounaProject" />
+</resources>

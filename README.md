@@ -1,0 +1,57 @@
+# ZitounaFlow
+
+Application mobile Android de **gestion des passages dans une huilerie** : rendez-vous,
+réception des lots d'olives, file d'attente, suivi du traitement, huile produite,
+historique, statistiques et analyse de la qualité des olives par IA.
+
+| Élément | Choix |
+|---|---|
+| Plateforme | Android Studio, **Java**, minSdk 24 |
+| Base de données | Cloud Firestore (Firebase) |
+| Authentification | Firebase Authentication (e-mail / mot de passe) |
+| IA (sprint 6) | TensorFlow Lite (MobileNetV2) |
+| Méthode | Scrum — voir [`docs/BACKLOG_SCRUM.md`](docs/BACKLOG_SCRUM.md) |
+
+## Lancer le projet
+
+1. Ouvrir le dossier dans **Android Studio**.
+2. Dans la [console Firebase](https://console.firebase.google.com) :
+   - créer un projet, puis ajouter une **application Android** avec le package
+     `com.example.zitounaproject` ;
+   - télécharger **`google-services.json`** et le placer dans le dossier **`app/`** ;
+   - *Authentication* > *Sign-in method* : activer **E-mail/Mot de passe** ;
+   - *Firestore Database* : créer la base, puis coller le contenu de
+     [`firestore.rules`](firestore.rules) dans l'onglet *Règles*.
+3. *Sync Project with Gradle Files*, puis lancer l'application sur un émulateur.
+
+## Architecture
+
+```
+app/src/main/java/com/example/zitounaproject/
+├── MainActivity.java          Routeur (session -> écran du rôle)
+├── model/                     Classes du diagramme de classes (Utilisateur, Agriculteur, ...)
+├── data/                      Accès Firebase (AuthRepository, UserSession, ...)
+├── util/                      Validation des formulaires, messages d'erreur
+└── ui/
+    ├── auth/                  Onboarding, connexion, inscription
+    ├── common/                Activités/fragments partagés (profil, navigation)
+    ├── agriculteur/           Espace agriculteur
+    └── gestionnaire/          Espace gestionnaire
+```
+
+### Modèle Firestore
+
+| Collection | Document | Champs principaux |
+|---|---|---|
+| `utilisateurs` | uid | nom, prenom, telephone, email, role, dateCreation, nomExploitation, adresse / matricule |
+
+## Avancement
+
+| Sprint | Contenu | Statut |
+|---|---|---|
+| 1 | Firebase, authentification, navigation par rôle, profil | ✅ |
+| 2 | Rendez-vous | ⏳ |
+| 3 | Lots et file d'attente | ⏳ |
+| 4 | Huile produite, récupération, historique | ⏳ |
+| 5 | Statistiques et notifications | ⏳ |
+| 6 | Analyse IA de la qualité des olives | ⏳ |

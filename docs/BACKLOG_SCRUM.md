@@ -1,0 +1,113 @@
+# ZitounaFlow — Backlog Scrum
+
+Application Android (Java) de gestion des passages dans une huilerie, avec Firebase
+(Authentication + Cloud Firestore) et une extension IA (TensorFlow Lite) pour l'analyse
+de la qualité des olives.
+
+- **Product Owner** : encadrant / huilerie
+- **Équipe** : Zeineb Bahloul
+- **Durée d'un sprint** : 1 semaine
+- **Definition of Done** : code compilable dans Android Studio, fonctionnalité testée sur
+  émulateur avec Firebase, écrans conformes aux maquettes, règles Firestore à jour,
+  commit poussé sur GitHub.
+
+Priorités : **M** = Must, **S** = Should, **C** = Could. Estimation en points (suite de Fibonacci).
+
+---
+
+## Sprint 1 — Socle technique, authentification et profil
+
+**Objectif** : un utilisateur (agriculteur ou gestionnaire) peut créer un compte, se connecter,
+réinitialiser son mot de passe, gérer son profil, et arrive sur l'espace propre à son rôle.
+
+| ID | User story | BF | Prio | Pts |
+|----|-----------|----|------|-----|
+| US-01 | En tant que **développeuse**, je veux configurer Firebase (Auth + Firestore), le thème graphique des maquettes et l'architecture du projet, afin de pouvoir développer les fonctionnalités. | — | M | 3 |
+| US-02 | En tant que **visiteur**, je veux voir un écran d'accueil présentant ZitounaFlow, afin de choisir de m'inscrire ou de me connecter. | — | S | 2 |
+| US-03 | En tant que **visiteur**, je veux créer un compte (nom, prénom, téléphone, e-mail, mot de passe) en choisissant mon rôle, afin d'accéder à l'application. | BF-01 | M | 5 |
+| US-04 | En tant qu'**utilisateur**, je veux me connecter et me déconnecter, afin d'accéder à mon espace de façon sécurisée. | BF-02 | M | 3 |
+| US-05 | En tant qu'**utilisateur**, je veux réinitialiser mon mot de passe par e-mail, afin de récupérer mon compte. | BF-03 | M | 2 |
+| US-06 | En tant qu'**utilisateur**, je veux consulter et modifier mon profil, afin de garder mes informations à jour. | BF-04 | M | 3 |
+| US-07 | En tant qu'**utilisateur**, je veux être redirigé vers l'espace de mon rôle (agriculteur ou gestionnaire) avec sa barre de navigation, afin d'accéder aux bons écrans. | — | M | 3 |
+
+**Critères d'acceptation principaux**
+- US-03 : e-mail valide, téléphone à 8 chiffres, mot de passe ≥ 6 caractères et confirmé ;
+  l'agriculteur saisit son exploitation et son adresse, le gestionnaire son matricule ;
+  le profil est enregistré dans `utilisateurs/{uid}` avec le rôle et la date de création.
+- US-04 : message clair en cas d'identifiants incorrects ; la session reste ouverte au
+  redémarrage ; la déconnexion ramène à l'écran d'accueil.
+- US-05 : un e-mail de réinitialisation Firebase est envoyé.
+- US-06 : l'e-mail et le rôle ne sont pas modifiables ; les modifications sont persistées.
+- US-07 : agriculteur → Accueil / RDV / Lots / Profil ; gestionnaire → Console / RDV / Lots / Stats / Profil.
+
+---
+
+## Sprint 2 — Rendez-vous
+
+**Objectif** : l'agriculteur demande un créneau de pressage, le gestionnaire le confirme ou le refuse.
+
+| ID | User story | BF | Prio | Pts |
+|----|-----------|----|------|-----|
+| US-08 | En tant qu'**agriculteur**, je veux demander un rendez-vous (date, créneau, variété, quantité estimée), afin de réserver mon passage. | BF-10 | M | 5 |
+| US-09 | En tant qu'**agriculteur**, je veux consulter l'état de mes rendez-vous et annuler une demande en attente. | BF-11 | M | 3 |
+| US-10 | En tant que **gestionnaire**, je veux consulter les demandes (par jour) et les confirmer ou les refuser avec un motif. | BF-20 | M | 5 |
+| US-11 | En tant qu'**utilisateur**, je veux recevoir une notification dans l'application quand un rendez-vous change d'état. | BF-05 | S | 3 |
+
+---
+
+## Sprint 3 — Lots et file d'attente
+
+**Objectif** : le gestionnaire enregistre les lots à l'arrivée et pilote la file ; l'agriculteur suit ses lots.
+
+| ID | User story | BF | Prio | Pts |
+|----|-----------|----|------|-----|
+| US-12 | En tant que **gestionnaire**, je veux enregistrer un lot à l'arrivée (propriétaire, poids, variété, date de réception), afin qu'il rejoigne la file. | BF-21 | M | 5 |
+| US-13 | En tant que **gestionnaire**, je veux consulter et réordonner la file d'attente et prioriser un lot. | BF-23 | M | 5 |
+| US-14 | En tant que **gestionnaire**, je veux faire avancer le statut d'un lot (cycle strictement séquentiel), avec historique des changements. | BF-24 | M | 3 |
+| US-15 | En tant qu'**agriculteur**, je veux suivre mes lots et leur statut en temps réel. | BF-12 | M | 3 |
+| US-16 | En tant qu'**agriculteur**, je veux connaître ma position dans la file et le temps d'attente estimé (poids des lots précédents / capacité machine). | BF-13 | M | 3 |
+
+---
+
+## Sprint 4 — Production d'huile, récupération et historique
+
+| ID | User story | BF | Prio | Pts |
+|----|-----------|----|------|-----|
+| US-17 | En tant que **gestionnaire**, je veux saisir la quantité d'huile produite ; le rendement est calculé (L / kg × 100) et le lot passe à « Prêt à récupérer ». | BF-25 | M | 3 |
+| US-18 | En tant que **gestionnaire**, je veux enregistrer la date de récupération effective d'un lot. | BF-26 | M | 2 |
+| US-19 | En tant qu'**agriculteur**, je veux consulter la quantité d'huile obtenue, le rendement et la date de récupération. | BF-14 | M | 2 |
+| US-20 | En tant qu'**agriculteur**, je veux consulter l'historique de mes passages et le bilan de campagne. | BF-15 | M | 3 |
+| US-21 | En tant que **gestionnaire**, je veux consulter l'historique global avec recherche et filtres. | BF-27 | M | 5 |
+
+---
+
+## Sprint 5 — Statistiques et notifications
+
+| ID | User story | BF | Prio | Pts |
+|----|-----------|----|------|-----|
+| US-22 | En tant que **gestionnaire**, je veux voir les statistiques (lots par jour, poids total, huile produite, rendement moyen, temps d'attente moyen, répartition de la qualité) sur une période. | BF-28 | M | 8 |
+| US-23 | En tant que **gestionnaire**, je veux un tableau de bord (console) avec les indicateurs du jour. | BF-28 | S | 3 |
+| US-24 | En tant qu'**agriculteur**, je veux être notifié quand mon lot change de statut ou est prêt à récupérer, et consulter mes notifications. | BF-05 | M | 5 |
+
+---
+
+## Sprint 6 — Extension IA : analyse de la qualité des olives
+
+| ID | User story | BF | Prio | Pts |
+|----|-----------|----|------|-----|
+| US-25 | En tant que **développeuse**, je veux entraîner un modèle MobileNetV2 (Colab) et l'exporter en TensorFlow Lite (classes : Excellente, Acceptable, Défectueuse). | BF-22 | M | 8 |
+| US-26 | En tant que **gestionnaire**, je veux prendre ou choisir une photo des olives et obtenir la classe prédite avec un score de confiance. | BF-22 | M | 5 |
+| US-27 | En tant que **gestionnaire**, je veux valider ou corriger le résultat et le rattacher au lot. | BF-22 | M | 3 |
+
+---
+
+## Suivi des sprints
+
+| Sprint | Statut | Commit |
+|--------|--------|--------|
+| Sprint 1 | Terminé | `Sprint 1 : socle Firebase, authentification, navigation par rôle et profil` |
+| Sprint 2 | À faire | |
+| Sprint 3 | À faire | |
+| Sprint 4 | À faire | |
+| Sprint 5 | À faire | |
+| Sprint 6 | À faire | |

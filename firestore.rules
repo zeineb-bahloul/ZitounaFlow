@@ -1,0 +1,29 @@
+rules_version = '2';
+
+// Règles de sécurité Cloud Firestore — ZitounaFlow
+// À copier dans la console Firebase > Firestore Database > Règles.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isGestionnaire() {
+      return signedIn()
+        && get(/databases/$(database)/documents/utilisateurs/$(request.auth.uid)).data.role == 'GESTIONNAIRE';
+    }
+
+    // Sprint 1 : profils utilisateurs (document = uid Firebase Auth)
+    match /utilisateurs/{uid} {
+      allow read: if signedIn() && (request.auth.uid == uid || isGestionnaire());
+      allow create: if signedIn() && request.auth.uid == uid
+        && request.resource.data.role in ['AGRICULTEUR', 'GESTIONNAIRE'];
+      // Le rôle et l'e-mail ne peuvent pas être modifiés
+      allow update: if signedIn() && request.auth.uid == uid
+        && request.resource.data.role == resource.data.role
+        && request.resource.data.email == resource.data.email;
+      allow delete: if false;
+    }
+  }
+}

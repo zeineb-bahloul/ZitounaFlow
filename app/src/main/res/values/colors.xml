@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Palette ZitounaFlow (maquettes) -->
+    <color name="olive_900">#2F3A12</color>
+    <color name="olive_700">#4E5D23</color>
+    <color name="olive_500">#6B7A33</color>
+    <color name="olive_100">#EEF0DD</color>
+    <color name="cream">#FAF6EB</color>
+    <color name="sand">#F1EAD7</color>
+    <color name="gold">#C9A24A</color>
+    <color name="gold_dark">#8C6D1F</color>
+    <color name="gold_light">#F3E7C4</color>
+    <color name="ink">#2A2A1F</color>
+    <color name="muted">#7B7A66</color>
+    <color name="stroke">#E6DEC6</color>
+    <color name="error">#B3261E</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

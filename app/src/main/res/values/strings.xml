@@ -1,0 +1,109 @@
+<resources>
+    <string name="app_name">ZitounaFlow</string>
+    <string name="app_tagline">Haute oléiculture</string>
+    <string name="campagne">Campagne 2026/2027</string>
+
+    <!-- Onboarding -->
+    <string name="onb_hero">L\'Or Vert de vos Terroirs</string>
+    <string name="onb_title">L\'Excellence Oléicole,</string>
+    <string name="onb_title_accent">du Verger au Moulin</string>
+    <string name="onb_subtitle">Réservez votre passage à l\'huilerie, suivez le traitement de vos olives en direct et contrôlez leur qualité grâce à l\'IA.</string>
+    <string name="onb_f1_title">Rendez-vous &amp; file d\'attente</string>
+    <string name="onb_f1_sub">Réservez un créneau et connaissez votre attente estimée</string>
+    <string name="onb_f2_title">Suivi des lots en direct</string>
+    <string name="onb_f2_sub">Réception, attente, traitement, huile prête</string>
+    <string name="onb_f3_title">Analyse qualité par IA</string>
+    <string name="onb_f3_sub">Classement visuel des olives à partir d\'une photo</string>
+    <string name="onb_start">Commencer l\'expérience</string>
+    <string name="onb_gestionnaire">Je suis Maître Moulinier / Gérant</string>
+    <string name="onb_login">Déjà inscrit ? Se connecter</string>
+
+    <!-- Authentification -->
+    <string name="login_overline">Terroirs &amp; moulins connectés</string>
+    <string name="login_title">Bienvenue sur ZitounaFlow</string>
+    <string name="login_subtitle">Connectez-vous à votre huilerie partenaire et suivez vos pressées en temps réel.</string>
+    <string name="role_agriculteur">Producteur</string>
+    <string name="role_agriculteur_sub">Agriculteur</string>
+    <string name="role_gestionnaire">Maître Moulin</string>
+    <string name="role_gestionnaire_sub">Gestionnaire</string>
+    <string name="hint_email">Adresse e-mail</string>
+    <string name="hint_password">Mot de passe</string>
+    <string name="hint_password_confirm">Confirmer le mot de passe</string>
+    <string name="forgot_password">Mot de passe oublié ?</string>
+    <string name="login_button">Se connecter</string>
+    <string name="login_no_account">Nouveau ? Créer un compte</string>
+    <string name="register_title">Créer un compte</string>
+    <string name="register_subtitle">Rejoignez le réseau ZitounaFlow</string>
+    <string name="register_button">Créer mon compte</string>
+    <string name="register_has_account">Déjà inscrit ? Se connecter</string>
+    <string name="hint_nom">Nom</string>
+    <string name="hint_prenom">Prénom</string>
+    <string name="hint_telephone">Téléphone</string>
+    <string name="hint_exploitation">Nom de l\'exploitation / domaine</string>
+    <string name="hint_adresse">Adresse</string>
+    <string name="hint_matricule">Matricule gestionnaire</string>
+    <string name="section_identite">Identité</string>
+    <string name="section_compte">Compte</string>
+    <string name="section_exploitation">Exploitation</string>
+    <string name="section_huilerie">Huilerie</string>
+    <string name="reset_title">Réinitialiser le mot de passe</string>
+    <string name="reset_message">Saisissez votre e-mail : vous recevrez un lien pour choisir un nouveau mot de passe.</string>
+    <string name="reset_send">Envoyer</string>
+    <string name="reset_sent">E-mail de réinitialisation envoyé à %1$s</string>
+    <string name="cancel">Annuler</string>
+
+    <!-- Validation -->
+    <string name="err_required">Champ obligatoire</string>
+    <string name="err_email">Adresse e-mail invalide</string>
+    <string name="err_phone">Numéro à 8 chiffres attendu</string>
+    <string name="err_password">6 caractères minimum</string>
+    <string name="err_password_match">Les mots de passe ne correspondent pas</string>
+    <string name="err_wrong_role">Ce compte n\'est pas un compte %1$s.</string>
+
+    <!-- Navigation -->
+    <string name="nav_accueil">Accueil</string>
+    <string name="nav_rdv">RDV</string>
+    <string name="nav_lots">Lots</string>
+    <string name="nav_profil">Profil</string>
+    <string name="nav_console">Console</string>
+    <string name="nav_stats">Stats</string>
+
+    <!-- Accueil agriculteur -->
+    <string name="dashboard">Dashboard</string>
+    <string name="hello">Bonjour, %1$s</string>
+    <string name="suivi_direct">Suivi en direct</string>
+    <string name="aucun_lot_traitement">Aucun lot en traitement pour le moment</string>
+    <string name="aucun_lot_traitement_sub">Votre position dans la file et le temps d\'attente estimé s\'afficheront ici.</string>
+    <string name="mes_apports">Mes apports aujourd\'hui</string>
+    <string name="aucun_apport">Aucun lot déposé aujourd\'hui.</string>
+    <string name="cta_overline">Récolte du verger prête ?</string>
+    <string name="cta_text">Réservez l\'entrée de vos caisses au moulin pour réduire l\'attente et préserver la qualité de vos olives.</string>
+    <string name="cta_button">Demander un créneau</string>
+
+    <!-- Console gestionnaire -->
+    <string name="console_overline">ZitounaFlow • Maître Moulin</string>
+    <string name="console_title">Console Maître Moulin</string>
+    <string name="kpi_lots">Lots reçus</string>
+    <string name="kpi_olives">Olives traitées</string>
+    <string name="kpi_huile">Huile extraite</string>
+    <string name="kpi_rendement">Rendement</string>
+    <string name="kpi_vide">—</string>
+    <string name="kpi_hint">Les indicateurs seront calculés à partir des lots enregistrés.</string>
+    <string name="actions_rapides">Actions rapides</string>
+    <string name="action_rdv">Gérer les rendez-vous</string>
+    <string name="action_lot">Enregistrer un lot</string>
+
+    <!-- Profil -->
+    <string name="profil_title">Mon profil</string>
+    <string name="profil_save">Enregistrer les modifications</string>
+    <string name="profil_saved">Profil mis à jour</string>
+    <string name="profil_reset_pwd">Changer mon mot de passe</string>
+    <string name="logout">Se déconnecter</string>
+    <string name="logout_confirm">Voulez-vous vraiment vous déconnecter ?</string>
+    <string name="membre_depuis">Membre depuis le %1$s</string>
+
+    <!-- Placeholders -->
+    <string name="bientot">Bientôt disponible</string>
+    <string name="prevu_sprint">Cette fonctionnalité est prévue au sprint %1$d.</string>
+    <string name="loading">Chargement…</string>
+</resources>

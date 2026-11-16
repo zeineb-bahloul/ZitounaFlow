@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_console" android:icon="@drawable/ic_dashboard" android:title="@string/nav_console" />
+    <item android:id="@+id/nav_rdv" android:icon="@drawable/ic_calendar" android:title="@string/nav_rdv" />
+    <item android:id="@+id/nav_lots" android:icon="@drawable/ic_lots" android:title="@string/nav_lots" />
+    <item android:id="@+id/nav_stats" android:icon="@drawable/ic_stats" android:title="@string/nav_stats" />
+    <item android:id="@+id/nav_profil" android:icon="@drawable/ic_person" android:title="@string/nav_profil" />
+</menu>
