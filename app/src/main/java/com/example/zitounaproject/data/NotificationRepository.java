@@ -13,15 +13,59 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/** Notifications dans l'application (BF-05). */
+/**
+ * Notifications dans l'application (BF-05).
+ * Un gestionnaire reçoit ses notifications personnelles et celles adressées à tous les
+ * gestionnaires (destinataire « GESTIONNAIRES » : nouvelles demandes, annulations).
+ */
 public class NotificationRepository {
 
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     /** Notifications de l'utilisateur, les plus récentes en premier, en temps réel. */
-    public ListenerRegistration ecouter(@NonNull String uid, @NonNull Callback<List<Notification>> callback) {
+    public ListenerRegistration ecouter(@NonNull String uid, boolean gestionnaire,
+                                        @NonNull Callback<List<Notification>> callback) {
+        final List<Notification> personnelles = new ArrayList<>();
+        final List<Notification> collectives = new ArrayList<>();
+
+        ListenerRegistration r1 = ecouterDestinataire(uid, new Callback<List<Notification>>() {
+            @Override
+            public void onSuccess(List<Notification> result) {
+                personnelles.clear();
+                personnelles.addAll(result);
+                callback.onSuccess(fusionner(personnelles, collectives));
+            }
+
+            @Override
+            public void onError(String message) {
+                callback.onError(message);
+            }
+        });
+        if (!gestionnaire) return r1;
+
+        ListenerRegistration r2 = ecouterDestinataire(Notification.DESTINATAIRE_GESTIONNAIRES,
+                new Callback<List<Notification>>() {
+                    @Override
+                    public void onSuccess(List<Notification> result) {
+                        collectives.clear();
+                        collectives.addAll(result);
+                        callback.onSuccess(fusionner(personnelles, collectives));
+                    }
+
+                    @Override
+                    public void onError(String message) {
+                        callback.onError(message);
+                    }
+                });
+        return () -> {
+            r1.remove();
+            r2.remove();
+        };
+    }
+
+    private ListenerRegistration ecouterDestinataire(String destinataireId, Callback<List<Notification>> callback) {
         return db.collection(FirestoreCollections.NOTIFICATIONS)
-                .whereEqualTo("destinataireId", uid)
+                .whereEqualTo("destinataireId", destinataireId)
                 .addSnapshotListener((snap, e) -> {
                     if (e != null) {
                         callback.onError(ErrorMessages.from(e));
@@ -37,12 +81,18 @@ public class NotificationRepository {
                             }
                         }
                     }
-                    Collections.sort(list, (a, b) -> {
-                        if (a.getDateEnvoi() == null || b.getDateEnvoi() == null) return 0;
-                        return b.getDateEnvoi().compareTo(a.getDateEnvoi());
-                    });
                     callback.onSuccess(list);
                 });
+    }
+
+    private static List<Notification> fusionner(List<Notification> a, List<Notification> b) {
+        List<Notification> all = new ArrayList<>(a);
+        all.addAll(b);
+        Collections.sort(all, (x, y) -> {
+            if (x.getDateEnvoi() == null || y.getDateEnvoi() == null) return 0;
+            return y.getDateEnvoi().compareTo(x.getDateEnvoi());
+        });
+        return all;
     }
 
     public void marquerCommeLues(@NonNull List<Notification> notifications) {

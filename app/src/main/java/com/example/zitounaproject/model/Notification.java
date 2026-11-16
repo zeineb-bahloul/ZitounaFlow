@@ -8,6 +8,11 @@ public class Notification {
     public static final String TYPE_RDV_CONFIRME = "RDV_CONFIRME";
     public static final String TYPE_RDV_REFUSE = "RDV_REFUSE";
     public static final String TYPE_LOT = "LOT";
+    public static final String TYPE_RDV_DEMANDE = "RDV_DEMANDE";
+    public static final String TYPE_RDV_ANNULE = "RDV_ANNULE";
+
+    /** Destinataire collectif : tous les gestionnaires de l'huilerie. */
+    public static final String DESTINATAIRE_GESTIONNAIRES = "GESTIONNAIRES";
     public static final String TYPE_INFO = "INFO";
 
     private String id;

@@ -20,10 +20,10 @@ import com.example.zitounaproject.model.Creneaux;
 import com.example.zitounaproject.model.FileAttenteCalculator;
 import com.example.zitounaproject.model.Lot;
 import com.example.zitounaproject.model.StatutLot;
+import com.example.zitounaproject.ui.common.LotActions;
 import com.example.zitounaproject.ui.common.LotAdapter;
 import com.example.zitounaproject.ui.common.LotDetailActivity;
 import com.example.zitounaproject.util.Formats;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.firestore.ListenerRegistration;
 
 import java.util.ArrayList;
@@ -39,6 +39,8 @@ public class FileMoulinFragment extends Fragment implements LotAdapter.Listener 
     private LotAdapter adapter;
     /** Lots de la file dans l'ordre de passage. */
     private List<Lot> file = new ArrayList<>();
+    /** Lots prêts dont l'huile n'a pas encore été récupérée. */
+    private final List<Lot> prets = new ArrayList<>();
     private Map<String, FileAttenteCalculator.Estimation> estimations;
     @Nullable private ListenerRegistration registration;
 
@@ -70,6 +72,8 @@ public class FileMoulinFragment extends Fragment implements LotAdapter.Listener 
                 binding.progress.setVisibility(View.GONE);
                 file = FileAttenteCalculator.ordonner(result);
                 estimations = FileAttenteCalculator.calculer(result, new Date());
+                prets.clear();
+                for (Lot l : result) if (l.isEnAttenteDeRecuperation()) prets.add(l);
                 afficher();
             }
 
@@ -115,9 +119,16 @@ public class FileMoulinFragment extends Fragment implements LotAdapter.Listener 
         binding.chipTous.setText(getString(R.string.filtre_tous_n, file.size()));
         binding.chipEnTraitement.setText(getString(R.string.filtre_en_traitement_n, enTraitement));
         binding.chipEnAttente.setText(getString(R.string.filtre_en_attente_n, enAttente));
+        binding.chipPrets.setText(getString(R.string.filtre_prets_n, prets.size()));
 
         int checked = binding.chipGroupFiltre.getCheckedChipId();
         List<Lot> filtres = new ArrayList<>();
+        if (checked == R.id.chipPrets) {
+            filtres.addAll(prets);
+            adapter.submit(filtres, estimations);
+            binding.layoutEmpty.setVisibility(filtres.isEmpty() ? View.VISIBLE : View.GONE);
+            return;
+        }
         for (Lot l : file) {
             boolean traitement = l.getStatut() == StatutLot.EN_TRAITEMENT;
             if (checked == R.id.chipEnTraitement && !traitement) continue;
@@ -142,24 +153,7 @@ public class FileMoulinFragment extends Fragment implements LotAdapter.Listener 
 
     @Override
     public void onAvancer(Lot lot) {
-        StatutLot suivant = lot.getStatut().suivant();
-        if (suivant == null) return;
-        new MaterialAlertDialogBuilder(requireContext())
-                .setTitle(lot.getStatut().getActionSuivante())
-                .setMessage(getString(R.string.avancer_message, lot.getNumero(), suivant.getLibelle()))
-                .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(R.string.valider, (d, w) -> repository.avancerStatut(lot, new Callback<StatutLot>() {
-                    @Override
-                    public void onSuccess(StatutLot result) {
-                        toast(getString(R.string.statut_mis_a_jour, lot.getNumero(), result.getLibelle()));
-                    }
-
-                    @Override
-                    public void onError(String message) {
-                        toast(message);
-                    }
-                }))
-                .show();
+        LotActions.executer(requireContext(), repository, lot);
     }
 
     @Override

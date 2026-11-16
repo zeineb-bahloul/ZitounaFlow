@@ -41,6 +41,11 @@ public class LotRepository {
     public static final List<String> STATUTS_FILE = Arrays.asList(
             StatutLot.RECEPTIONNE.name(), StatutLot.EN_ATTENTE.name(), StatutLot.EN_TRAITEMENT.name());
 
+    /** Statuts affichés côté gestionnaire : la file + les lots prêts (pas encore récupérés). */
+    public static final List<String> STATUTS_SUIVI = Arrays.asList(
+            StatutLot.RECEPTIONNE.name(), StatutLot.EN_ATTENTE.name(), StatutLot.EN_TRAITEMENT.name(),
+            StatutLot.PRET_A_RECUPERER.name());
+
     /** Écart minimal (ms) avant de réécrire une estimation, pour limiter les écritures. */
     private static final long TOLERANCE_MS = 2 * 60_000L;
 
@@ -48,10 +53,10 @@ public class LotRepository {
 
     // ---------------------------------------------------------------- Lecture
 
-    /** File d'attente (lots réceptionnés, en attente et en traitement), en temps réel. */
+    /** File d'attente + lots prêts à récupérer, en temps réel. */
     public ListenerRegistration ecouterFile(@NonNull Callback<List<Lot>> callback) {
         return db.collection(FirestoreCollections.LOTS)
-                .whereIn("statut", STATUTS_FILE)
+                .whereIn("statut", STATUTS_SUIVI)
                 .addSnapshotListener((snap, e) -> deliver(snap, e, callback));
     }
 
@@ -154,7 +159,7 @@ public class LotRepository {
 
     /**
      * US-14 : fait avancer le lot d'une étape. Le cycle est strictement séquentiel ;
-     * le passage à « Prêt à récupérer » se fait avec la saisie de l'huile (sprint 4).
+     * le passage à « Prêt à récupérer » se fait avec {@link #enregistrerHuile}.
      */
     public void avancerStatut(@NonNull Lot lot, @NonNull Callback<StatutLot> callback) {
         StatutLot attendu = lot.getStatut();
@@ -192,6 +197,79 @@ public class LotRepository {
                     callback.onSuccess(suivant);
                     recalculerFile(null);
                 })
+                .addOnFailureListener(e -> callback.onError(ErrorMessages.from(e)));
+    }
+
+    /**
+     * US-17 : saisie de la quantité d'huile produite. Le rendement est calculé
+     * (litres / kg × 100) et le lot passe à « Prêt à récupérer ».
+     */
+    public void enregistrerHuile(@NonNull Lot lot, double litres, @NonNull Callback<Lot> callback) {
+        if (litres <= 0) {
+            callback.onError("La quantité d'huile doit être positive.");
+            return;
+        }
+        DocumentReference lotRef = db.collection(FirestoreCollections.LOTS).document(lot.getId());
+        DocumentReference histRef = lotRef.collection(FirestoreCollections.HISTORIQUE).document();
+        DocumentReference notifRef = db.collection(FirestoreCollections.NOTIFICATIONS).document();
+        String uid = FirebaseAuth.getInstance().getUid();
+        double rendement = lot.getPoidsKg() > 0 ? litres / lot.getPoidsKg() * 100 : 0;
+
+        db.runTransaction((Transaction.Function<Void>) transaction -> {
+                    DocumentSnapshot actuel = transaction.get(lotRef);
+                    if (!StatutLot.EN_TRAITEMENT.name().equals(actuel.getString("statut"))) {
+                        throw new IllegalStateException("L'huile se saisit quand le lot est en traitement.");
+                    }
+                    Map<String, Object> update = new HashMap<>();
+                    update.put("statut", StatutLot.PRET_A_RECUPERER.name());
+                    update.put("quantiteHuileL", litres);
+                    update.put("rendementPourcent", rendement);
+                    update.put("dateFinTraitement", new Date());
+                    transaction.update(lotRef, update);
+                    transaction.set(histRef, new HistoriqueStatut(StatutLot.EN_TRAITEMENT, StatutLot.PRET_A_RECUPERER, uid));
+                    if (lot.getAgriculteurId() != null) {
+                        transaction.set(notifRef, new Notification(lot.getAgriculteurId(),
+                                "Lot " + lot.getNumero() + " prêt à récupérer",
+                                String.format(Locale.FRENCH,
+                                        "Votre huile est prête : %s L pour %s d'olives (rendement %.1f %%). "
+                                                + "Vous pouvez venir la récupérer.",
+                                        Formats.nombre(litres), Formats.kg(lot.getPoidsKg()), rendement),
+                                Notification.TYPE_LOT));
+                    }
+                    return null;
+                })
+                .addOnSuccessListener(unused -> {
+                    lot.setStatut(StatutLot.PRET_A_RECUPERER);
+                    lot.setQuantiteHuileL(litres);
+                    lot.setRendementPourcent(rendement);
+                    callback.onSuccess(lot);
+                    recalculerFile(null);
+                })
+                .addOnFailureListener(e -> callback.onError(ErrorMessages.from(e)));
+    }
+
+    /** US-18 : enregistre la date de récupération effective de l'huile. */
+    public void enregistrerRecuperation(@NonNull Lot lot, @NonNull Callback<Void> callback) {
+        DocumentReference lotRef = db.collection(FirestoreCollections.LOTS).document(lot.getId());
+        DocumentReference notifRef = db.collection(FirestoreCollections.NOTIFICATIONS).document();
+        db.runTransaction((Transaction.Function<Void>) transaction -> {
+                    DocumentSnapshot actuel = transaction.get(lotRef);
+                    if (!StatutLot.PRET_A_RECUPERER.name().equals(actuel.getString("statut"))) {
+                        throw new IllegalStateException("Le lot n'est pas encore prêt à récupérer.");
+                    }
+                    if (actuel.get("dateRecuperation") != null) {
+                        throw new IllegalStateException("La récupération de ce lot est déjà enregistrée.");
+                    }
+                    transaction.update(lotRef, "dateRecuperation", new Date());
+                    if (lot.getAgriculteurId() != null) {
+                        transaction.set(notifRef, new Notification(lot.getAgriculteurId(),
+                                "Lot " + lot.getNumero() + " récupéré",
+                                "La récupération de votre huile a été enregistrée. Merci de votre confiance !",
+                                Notification.TYPE_LOT));
+                    }
+                    return null;
+                })
+                .addOnSuccessListener(unused -> callback.onSuccess(null))
                 .addOnFailureListener(e -> callback.onError(ErrorMessages.from(e)));
     }
 

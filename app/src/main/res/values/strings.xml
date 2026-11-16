@@ -254,4 +254,20 @@
         <item quantity="one">%1$d lot déposé au quai de pesée</item>
         <item quantity="other">%1$d lots déposés au quai de pesée</item>
     </plurals>
+
+    <!-- Correctifs : phases suivantes d'un lot (US-17, US-18) -->
+    <string name="filtre_prets">Prêts</string>
+    <string name="filtre_prets_n">Prêts (%1$d)</string>
+    <string name="huile_titre">Huile produite</string>
+    <string name="huile_info_lot">Lot %1$s • %2$s • %3$s</string>
+    <string name="hint_litres">Quantité d\'huile obtenue</string>
+    <string name="rendement_vide">Rendement : —</string>
+    <string name="huile_note">Le lot passera à « Prêt à récupérer » et l\'agriculteur sera notifié.</string>
+    <string name="err_litres">Quantité invalide (au plus 40 L pour 100 kg d\'olives)</string>
+    <string name="huile_ok">Lot %1$s prêt à récupérer (rendement %2$s %%)</string>
+    <string name="recuperation_titre">Enregistrer la récupération</string>
+    <string name="recuperation_message">Confirmer que %3$s a récupéré les %2$s L d\'huile du lot %1$s ?</string>
+    <string name="recuperation_ok">Récupération du lot %1$s enregistrée</string>
+    <string name="recupere_le">Récupéré le %1$s</string>
+    <string name="a_recuperer">Huile prête, en attente de récupération</string>
 </resources>

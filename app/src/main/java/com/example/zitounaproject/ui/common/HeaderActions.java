@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.zitounaproject.data.Callback;
 import com.example.zitounaproject.data.NotificationRepository;
+import com.example.zitounaproject.data.UserSession;
+import com.example.zitounaproject.model.Role;
 import com.example.zitounaproject.model.Notification;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.ListenerRegistration;
@@ -39,7 +41,7 @@ public class HeaderActions {
     public void start() {
         String uid = FirebaseAuth.getInstance().getUid();
         if (uid == null) return;
-        registration = new NotificationRepository().ecouter(uid, new Callback<List<Notification>>() {
+        registration = new NotificationRepository().ecouter(uid, estGestionnaire(), new Callback<List<Notification>>() {
             @Override
             public void onSuccess(List<Notification> result) {
                 if (!fragment.isAdded()) return;
@@ -62,5 +64,9 @@ public class HeaderActions {
             registration.remove();
             registration = null;
         }
+    }
+
+    private static boolean estGestionnaire() {
+        return UserSession.get() != null && UserSession.get().getRole() == Role.GESTIONNAIRE;
     }
 }

@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.zitounaproject.data.Callback;
 import com.example.zitounaproject.data.NotificationRepository;
+import com.example.zitounaproject.data.UserSession;
+import com.example.zitounaproject.model.Role;
 import com.example.zitounaproject.databinding.ActivityNotificationsBinding;
 import com.example.zitounaproject.model.Notification;
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,7 +45,7 @@ public class NotificationsActivity extends BaseActivity {
             finish();
             return;
         }
-        registration = repository.ecouter(uid, new Callback<List<Notification>>() {
+        registration = repository.ecouter(uid, estGestionnaire(), new Callback<List<Notification>>() {
             @Override
             public void onSuccess(List<Notification> result) {
                 adapter.submit(result);
@@ -66,5 +68,9 @@ public class NotificationsActivity extends BaseActivity {
             registration.remove();
             registration = null;
         }
+    }
+
+    private static boolean estGestionnaire() {
+        return UserSession.get() != null && UserSession.get().getRole() == Role.GESTIONNAIRE;
     }
 }

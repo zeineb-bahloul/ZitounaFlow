@@ -9,6 +9,7 @@ import com.example.zitounaproject.model.RendezVous;
 import com.example.zitounaproject.model.StatutRendezVous;
 import com.example.zitounaproject.util.DateUtils;
 import com.example.zitounaproject.util.ErrorMessages;
+import com.example.zitounaproject.util.Formats;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -60,9 +61,16 @@ public class RendezVousRepository {
         }
         DocumentReference planningRef = db.collection(FirestoreCollections.PLANNING).document(rdv.getJour());
         DocumentReference rdvRef = db.collection(FirestoreCollections.RENDEZ_VOUS).document();
+        DocumentReference notifRef = db.collection(FirestoreCollections.NOTIFICATIONS).document();
         rdv.setId(rdvRef.getId());
         rdv.setStatut(StatutRendezVous.EN_ATTENTE_CONFIRMATION);
         rdv.setDateDemande(new Date());
+        Notification notif = new Notification(Notification.DESTINATAIRE_GESTIONNAIRES,
+                "Nouvelle demande de rendez-vous",
+                rdv.getNomAffichage() + " demande le créneau " + rdv.getCreneau() + " du "
+                        + DateUtils.jourLong(rdv.getDate()) + " (" + rdv.getVariete() + ", "
+                        + Formats.kg(rdv.getQuantiteEstimeeKg()) + ").",
+                Notification.TYPE_RDV_DEMANDE);
 
         db.runTransaction((Transaction.Function<Void>) transaction -> {
                     DocumentSnapshot planning = transaction.get(planningRef);
@@ -76,6 +84,7 @@ public class RendezVousRepository {
                     update.put(cle, count + 1);
                     transaction.set(planningRef, update, SetOptions.merge());
                     transaction.set(rdvRef, rdv);
+                    transaction.set(notifRef, notif);
                     return null;
                 })
                 .addOnSuccessListener(unused -> callback.onSuccess(rdv))
@@ -92,7 +101,12 @@ public class RendezVousRepository {
 
     /** US-09 : annulation par l'agriculteur (libère la place du créneau). */
     public void annuler(@NonNull RendezVous rdv, @NonNull Callback<Void> callback) {
-        changerStatutEtLiberer(rdv, StatutRendezVous.ANNULE, null, null, callback);
+        Notification notif = new Notification(Notification.DESTINATAIRE_GESTIONNAIRES,
+                "Rendez-vous annulé",
+                rdv.getNomAffichage() + " a annulé son créneau " + rdv.getCreneau() + " du "
+                        + DateUtils.jourLong(rdv.getDate()) + ". La place est de nouveau disponible.",
+                Notification.TYPE_RDV_ANNULE);
+        changerStatutEtLiberer(rdv, StatutRendezVous.ANNULE, null, notif, callback);
     }
 
     // ---------------------------------------------------------------- Gestionnaire

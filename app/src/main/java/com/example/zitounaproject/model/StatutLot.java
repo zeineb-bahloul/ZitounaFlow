@@ -13,7 +13,7 @@ public enum StatutLot {
     RECEPTIONNE("Réceptionné", "Placer en attente", R.color.sand, R.color.ink),
     EN_ATTENTE("En attente", "Lancer le traitement", R.color.gold_light, R.color.gold_dark),
     EN_TRAITEMENT("En traitement", "Enregistrer l'huile produite", R.color.olive_700, R.color.white),
-    PRET_A_RECUPERER("Prêt à récupérer", null, R.color.olive_100, R.color.olive_700);
+    PRET_A_RECUPERER("Prêt à récupérer", "Enregistrer la récupération", R.color.olive_100, R.color.olive_700);
 
     private final String libelle;
     @Nullable private final String actionSuivante;
@@ -29,7 +29,7 @@ public enum StatutLot {
 
     public String getLibelle() { return libelle; }
 
-    /** Libellé du bouton qui fait passer au statut suivant. */
+    /** Libellé du bouton de l'action suivante (pour « Prêt » : enregistrer la récupération). */
     @Nullable
     public String getActionSuivante() { return actionSuivante; }
 
@@ -44,6 +44,11 @@ public enum StatutLot {
     public StatutLot suivant() {
         int next = ordinal() + 1;
         return next < values().length ? values()[next] : null;
+    }
+
+    /** Numéro de l'étape (1 à 4). */
+    public int etape() {
+        return ordinal() + 1;
     }
 
     /** Un lot est dans la file tant qu'il n'est pas prêt à récupérer. */

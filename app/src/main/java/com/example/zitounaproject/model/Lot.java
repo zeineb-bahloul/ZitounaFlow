@@ -102,6 +102,18 @@ public class Lot {
         return agriculteurNom != null ? agriculteurNom : "Producteur";
     }
 
+    /** Prêt mais l'huile n'a pas encore été récupérée. */
+    @Exclude
+    public boolean isEnAttenteDeRecuperation() {
+        return statut == StatutLot.PRET_A_RECUPERER && dateRecuperation == null;
+    }
+
+    /** Lot encore « en cours » : dans la file ou huile pas encore récupérée. */
+    @Exclude
+    public boolean isEnCours() {
+        return (statut != null && statut.estDansLaFile()) || isEnAttenteDeRecuperation();
+    }
+
     @Exclude
     public boolean isSansCompte() {
         return agriculteurId == null;

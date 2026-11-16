@@ -67,12 +67,19 @@ service cloud.firestore {
       allow read, write: if isGestionnaire();
     }
 
-    // Notifications : créées par le gestionnaire, lues par leur destinataire
+    // Notifications : personnelles (destinataireId = uid) ou collectives pour tous
+    // les gestionnaires (destinataireId = 'GESTIONNAIRES')
     match /notifications/{notifId} {
-      allow read: if signedIn() && resource.data.destinataireId == request.auth.uid;
-      allow update: if signedIn() && resource.data.destinataireId == request.auth.uid
+      function estDestinataire(data) {
+        return data.destinataireId == request.auth.uid
+          || (data.destinataireId == 'GESTIONNAIRES' && isGestionnaire());
+      }
+      allow read: if signedIn() && estDestinataire(resource.data);
+      allow update: if signedIn() && estDestinataire(resource.data)
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['lue']);
-      allow create: if isGestionnaire();
+      // Le gestionnaire notifie les agriculteurs ; un agriculteur peut notifier les gestionnaires
+      allow create: if isGestionnaire()
+        || (signedIn() && request.resource.data.destinataireId == 'GESTIONNAIRES');
       allow delete: if false;
     }
   }

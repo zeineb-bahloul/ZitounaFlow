@@ -127,17 +127,26 @@ public class LotAdapter extends RecyclerView.Adapter<LotAdapter.Holder> {
                     ? String.format(Locale.FRENCH, "%.1f %%", lot.calculerRendement()) : "—");
         }
 
-        // Actions du gestionnaire sur la file
-        boolean gestion = mode == Mode.GESTIONNAIRE && statut.estDansLaFile();
-        boolean enFile = gestion && statut != StatutLot.EN_TRAITEMENT;
+        // Phase actuelle et phase suivante, visibles directement sur la carte
+        String etape = "Étape " + statut.etape() + "/4 : " + statut.getLibelle();
+        if (statut == StatutLot.PRET_A_RECUPERER) {
+            etape += lot.getDateRecuperation() != null
+                    ? " • récupéré le " + DateUtils.dateHeure(lot.getDateRecuperation())
+                    : " • en attente de récupération";
+        } else if (statut.suivant() != null) {
+            etape += " → prochaine : " + statut.suivant().getLibelle();
+        }
+        b.txtEtape.setText(etape);
+
+        // Actions du gestionnaire
+        boolean gestion = mode == Mode.GESTIONNAIRE && LotActions.aUneActionSuivante(lot);
+        boolean enFile = gestion && statut != StatutLot.EN_TRAITEMENT && statut.estDansLaFile();
         b.layoutActions.setVisibility(gestion ? View.VISIBLE : View.GONE);
         b.btnMonter.setVisibility(enFile ? View.VISIBLE : View.GONE);
         b.btnDescendre.setVisibility(enFile ? View.VISIBLE : View.GONE);
         b.btnPrioriser.setVisibility(enFile ? View.VISIBLE : View.GONE);
-        StatutLot suivant = statut.suivant();
-        boolean peutAvancer = gestion && suivant != null && suivant != StatutLot.PRET_A_RECUPERER;
-        b.btnAvancer.setVisibility(peutAvancer ? View.VISIBLE : View.GONE);
-        if (peutAvancer) b.btnAvancer.setText(statut.getActionSuivante());
+        b.btnAvancer.setVisibility(gestion ? View.VISIBLE : View.GONE);
+        if (gestion) b.btnAvancer.setText(statut.getActionSuivante());
 
         b.getRoot().setOnClickListener(v -> listener.onOuvrir(lot));
         b.btnAvancer.setOnClickListener(v -> listener.onAvancer(lot));

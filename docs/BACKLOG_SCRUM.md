@@ -101,14 +101,22 @@ terminal » à la connexion, bannière « N demandes de pressage à valider » d
   restant du lot en traitement) / 1 000 kg/h ; position et attente enregistrées sur chaque lot
   après chaque modification de la file ; test unitaire `FileAttenteCalculatorTest`.
 
+**Correctifs après la revue du sprint 3**
+- Les gestionnaires reçoivent maintenant des notifications : nouvelle demande de rendez-vous
+  et annulation par un agriculteur (destinataire collectif `GESTIONNAIRES`).
+- La carte de chaque lot affiche sa phase (« Étape 2/4 : En attente → prochaine : … »).
+- US-17 et US-18 (sprint 4) avancées pour débloquer la suite du cycle : saisie de l'huile
+  (rendement calculé, passage à « Prêt à récupérer ») et enregistrement de la récupération ;
+  filtre « Prêts » dans la file du moulin.
+
 ---
 
 ## Sprint 4 — Production d'huile, récupération et historique
 
 | ID | User story | BF | Prio | Pts |
 |----|-----------|----|------|-----|
-| US-17 | En tant que **gestionnaire**, je veux saisir la quantité d'huile produite ; le rendement est calculé (L / kg × 100) et le lot passe à « Prêt à récupérer ». | BF-25 | M | 3 |
-| US-18 | En tant que **gestionnaire**, je veux enregistrer la date de récupération effective d'un lot. | BF-26 | M | 2 |
+| US-17 ✅ | En tant que **gestionnaire**, je veux saisir la quantité d'huile produite ; le rendement est calculé (L / kg × 100) et le lot passe à « Prêt à récupérer ». | BF-25 | M | 3 |
+| US-18 ✅ | En tant que **gestionnaire**, je veux enregistrer la date de récupération effective d'un lot. | BF-26 | M | 2 |
 | US-19 | En tant qu'**agriculteur**, je veux consulter la quantité d'huile obtenue, le rendement et la date de récupération. | BF-14 | M | 2 |
 | US-20 | En tant qu'**agriculteur**, je veux consulter l'historique de mes passages et le bilan de campagne. | BF-15 | M | 3 |
 | US-21 | En tant que **gestionnaire**, je veux consulter l'historique global avec recherche et filtres. | BF-27 | M | 5 |

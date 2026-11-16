@@ -87,7 +87,7 @@ public class MesLotsFragment extends Fragment implements LotAdapter.Listener {
         int actifs = 0;
         for (Lot l : tous) {
             kgTotal += l.getPoidsKg();
-            boolean actif = l.getStatut() != null && l.getStatut().estDansLaFile();
+            boolean actif = l.isEnCours();
             if (actif) actifs++;
             if (enCours && !actif) continue;
             filtres.add(l);

@@ -93,6 +93,19 @@
             android:textSize="12sp"
             tools:text="Chétoui • Reçu aujourd'hui à 08h30" />
 
+        <TextView
+            android:id="@+id/txtEtape"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_banner"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
+            android:textColor="@color/gold_dark"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:text="Étape 2/4 : En attente → prochaine : En traitement" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

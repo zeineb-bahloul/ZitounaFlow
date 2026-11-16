@@ -23,7 +23,6 @@ import com.example.zitounaproject.model.Role;
 import com.example.zitounaproject.model.StatutLot;
 import com.example.zitounaproject.util.DateUtils;
 import com.example.zitounaproject.util.Formats;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.firestore.ListenerRegistration;
 
 import java.text.SimpleDateFormat;
@@ -142,11 +141,13 @@ public class LotDetailActivity extends BaseActivity {
         if (huile) {
             binding.txtHuile.setText(Formats.nombre(lot.getQuantiteHuileL()) + " L");
             binding.txtRendement.setText(String.format(Locale.FRENCH, "%.1f %%", lot.calculerRendement()));
+            binding.txtRecuperation.setText(lot.getDateRecuperation() != null
+                    ? getString(R.string.recupere_le, DateUtils.dateHeure(lot.getDateRecuperation()))
+                    : getString(R.string.a_recuperer));
         }
 
         // Action du gestionnaire
-        StatutLot suivant = statut.suivant();
-        boolean peutAvancer = estGestionnaire() && suivant != null && suivant != StatutLot.PRET_A_RECUPERER;
+        boolean peutAvancer = estGestionnaire() && LotActions.aUneActionSuivante(lot);
         binding.btnAvancer.setVisibility(peutAvancer ? View.VISIBLE : View.GONE);
         if (peutAvancer) binding.btnAvancer.setText(statut.getActionSuivante());
     }
@@ -216,24 +217,7 @@ public class LotDetailActivity extends BaseActivity {
     }
 
     private void avancer() {
-        if (lot == null || lot.getStatut() == null || lot.getStatut().suivant() == null) return;
-        Lot courant = lot;
-        new MaterialAlertDialogBuilder(this)
-                .setTitle(courant.getStatut().getActionSuivante())
-                .setMessage(getString(R.string.avancer_message, courant.getNumero(), courant.getStatut().suivant().getLibelle()))
-                .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(R.string.valider, (d, w) -> repository.avancerStatut(courant, new Callback<StatutLot>() {
-                    @Override
-                    public void onSuccess(StatutLot result) {
-                        toast(getString(R.string.statut_mis_a_jour, courant.getNumero(), result.getLibelle()));
-                    }
-
-                    @Override
-                    public void onError(String message) {
-                        toast(message);
-                    }
-                }))
-                .show();
+        if (lot != null) LotActions.executer(this, repository, lot);
     }
 
     private static String heure(Date date) {
