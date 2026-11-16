@@ -53,6 +53,13 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".ui.common.NotificationsActivity" android:exported="false" />
+
+        <!-- Sprint 3 : lots et file d'attente -->
+        <activity
+            android:name=".ui.gestionnaire.EnregistrerLotActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ui.common.LotDetailActivity" android:exported="false" />
     </application>
 
 </manifest>

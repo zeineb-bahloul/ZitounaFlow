@@ -24,6 +24,11 @@ historique, statistiques et analyse de la qualité des olives par IA.
      [`firestore.rules`](firestore.rules) dans l'onglet *Règles*.
 3. *Sync Project with Gradle Files*, puis lancer l'application sur un émulateur.
 
+## Tests
+
+`FileAttenteCalculatorTest` (dossier `app/src/test`) vérifie le calcul de la file d'attente et du
+rendement. Dans Android Studio : clic droit sur le fichier > *Run*.
+
 ## Architecture
 
 ```
@@ -47,6 +52,9 @@ app/src/main/java/com/example/zitounaproject/
 | `rendezVous` | auto | agriculteurId, date, jour, creneau, variete, quantiteEstimeeKg, remarque, statut, motifRefus, dateDemande, dateTraitement |
 | `planning` | yyyy-MM-dd | s0..s3 : nombre de réservations actives par créneau |
 | `notifications` | auto | destinataireId, titre, message, type, dateEnvoi, lue |
+| `lots` | auto | numero, agriculteurId, variete, poidsBrutKg, tareKg, poidsKg, statut, ordreFile, prioritaire, positionFile, tempsAttenteEstimeMin, debutEstime, dateDebutTraitement, quantiteHuileL… |
+| `lots/{id}/historique` | auto | ancienStatut, nouveauStatut, dateChangement, parId |
+| `compteurs` | lots | dernier (numérotation des lots) |
 
 ## Avancement
 
@@ -54,7 +62,7 @@ app/src/main/java/com/example/zitounaproject/
 |---|---|---|
 | 1 | Firebase, authentification, navigation par rôle, profil | ✅ |
 | 2 | Rendez-vous, notifications | ✅ |
-| 3 | Lots et file d'attente | ⏳ |
+| 3 | Lots et file d'attente | ✅ |
 | 4 | Huile produite, récupération, historique | ⏳ |
 | 5 | Statistiques et notifications | ⏳ |
 | 6 | Analyse IA de la qualité des olives | ⏳ |

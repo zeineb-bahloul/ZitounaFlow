@@ -40,9 +40,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         b.txtDate.setText(DateUtils.dateHeure(n.getDateEnvoi()));
         b.dotNonLue.setVisibility(n.isLue() ? View.INVISIBLE : View.VISIBLE);
         boolean refus = Notification.TYPE_RDV_REFUSE.equals(n.getType());
-        b.imgIcon.setImageResource(refus ? R.drawable.ic_close : R.drawable.ic_check);
-        b.iconBg.setBackgroundResource(refus ? R.drawable.bg_circle_red_light : R.drawable.bg_circle_olive_light);
-        b.imgIcon.setColorFilter(b.getRoot().getContext().getColor(refus ? R.color.error : R.color.olive_700));
+        boolean lot = Notification.TYPE_LOT.equals(n.getType());
+        b.imgIcon.setImageResource(refus ? R.drawable.ic_close : lot ? R.drawable.ic_leaf : R.drawable.ic_check);
+        b.iconBg.setBackgroundResource(refus ? R.drawable.bg_circle_red_light
+                : lot ? R.drawable.bg_circle_gold_light : R.drawable.bg_circle_olive_light);
+        b.imgIcon.setColorFilter(b.getRoot().getContext().getColor(
+                refus ? R.color.error : lot ? R.color.gold_dark : R.color.olive_700));
     }
 
     @Override

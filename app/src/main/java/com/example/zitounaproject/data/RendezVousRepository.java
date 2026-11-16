@@ -105,6 +105,15 @@ public class RendezVousRepository {
                 .addSnapshotListener((snap, e) -> deliver(snap, e, callback));
     }
 
+    /** Rendez-vous d'un jour (lecture unique). */
+    public void chargerParJour(@NonNull String jour, @NonNull Callback<List<RendezVous>> callback) {
+        db.collection(FirestoreCollections.RENDEZ_VOUS)
+                .whereEqualTo("jour", jour)
+                .get()
+                .addOnSuccessListener(snap -> deliver(snap, null, callback))
+                .addOnFailureListener(e -> callback.onError(ErrorMessages.from(e)));
+    }
+
     /** Demandes en attente de confirmation (tous jours confondus). */
     public ListenerRegistration ecouterEnAttente(@NonNull Callback<List<RendezVous>> callback) {
         return db.collection(FirestoreCollections.RENDEZ_VOUS)

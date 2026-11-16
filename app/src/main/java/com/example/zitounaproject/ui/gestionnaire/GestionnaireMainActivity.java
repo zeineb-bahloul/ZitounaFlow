@@ -27,7 +27,7 @@ public class GestionnaireMainActivity extends RoleMainActivity {
         if (menuItemId == R.id.nav_rdv) {
             return new GestionRdvFragment();
         } else if (menuItemId == R.id.nav_lots) {
-            return PlaceholderFragment.newInstance(getString(R.string.nav_lots), R.drawable.ic_lots, 3);
+            return new FileMoulinFragment();
         } else if (menuItemId == R.id.nav_stats) {
             return PlaceholderFragment.newInstance(getString(R.string.nav_stats), R.drawable.ic_stats, 5);
         } else if (menuItemId == R.id.nav_profil) {

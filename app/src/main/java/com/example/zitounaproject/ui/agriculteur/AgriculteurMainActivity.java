@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.zitounaproject.R;
-import com.example.zitounaproject.ui.common.PlaceholderFragment;
 import com.example.zitounaproject.ui.common.ProfilFragment;
 import com.example.zitounaproject.ui.common.RoleMainActivity;
 
@@ -27,7 +26,7 @@ public class AgriculteurMainActivity extends RoleMainActivity {
         if (menuItemId == R.id.nav_rdv) {
             return new MesRendezVousFragment();
         } else if (menuItemId == R.id.nav_lots) {
-            return PlaceholderFragment.newInstance(getString(R.string.nav_lots), R.drawable.ic_lots, 3);
+            return new MesLotsFragment();
         } else if (menuItemId == R.id.nav_profil) {
             return new ProfilFragment();
         }

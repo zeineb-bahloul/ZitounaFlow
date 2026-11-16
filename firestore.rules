@@ -46,6 +46,27 @@ service cloud.firestore {
       allow read, write: if signedIn();
     }
 
+    // Sprint 3 : lots d'olives (un lot appartient à un seul agriculteur)
+    match /lots/{lotId} {
+      allow read: if isGestionnaire()
+        || (signedIn() && resource.data.agriculteurId == request.auth.uid);
+      // Seul le gestionnaire crée les lots et modifie statuts et file d'attente
+      allow create, update: if isGestionnaire();
+      allow delete: if false;
+
+      match /historique/{histId} {
+        allow read: if isGestionnaire()
+          || (signedIn() && get(/databases/$(database)/documents/lots/$(lotId)).data.agriculteurId == request.auth.uid);
+        allow create: if isGestionnaire();
+        allow update, delete: if false;
+      }
+    }
+
+    // Numérotation des lots
+    match /compteurs/{compteurId} {
+      allow read, write: if isGestionnaire();
+    }
+
     // Notifications : créées par le gestionnaire, lues par leur destinataire
     match /notifications/{notifId} {
       allow read: if signedIn() && resource.data.destinataireId == request.auth.uid;

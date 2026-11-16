@@ -174,9 +174,12 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardSuivi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:focusable="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -191,36 +194,164 @@
                 android:text="@string/suivi_direct"
                 android:textAppearance="@style/TextAppearance.Zitouna.Overline" />
 
-            <FrameLayout
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:layout_marginTop="14dp"
-                android:background="@drawable/bg_circle_gold_light">
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="center"
-                    android:contentDescription="@null"
-                    android:src="@drawable/ic_leaf"
-                    app:tint="@color/gold_dark" />
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/layoutSuiviVide"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:gravity="center"
-                android:text="@string/aucun_lot_traitement"
-                android:textAppearance="@style/TextAppearance.Zitouna.Title" />
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
+                <FrameLayout
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_marginTop="14dp"
+                    android:background="@drawable/bg_circle_gold_light">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_leaf"
+                        app:tint="@color/gold_dark" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center"
+                    android:text="@string/aucun_lot_traitement"
+                    android:textAppearance="@style/TextAppearance.Zitouna.Title" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:text="@string/aucun_lot_traitement_sub"
+                    android:textAppearance="@style/TextAppearance.Zitouna.Body" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutSuiviActif"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:gravity="center"
-                android:text="@string/aucun_lot_traitement_sub"
-                android:textAppearance="@style/TextAppearance.Zitouna.Body" />
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp">
+
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:id="@+id/progressSuivi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:max="100"
+                        app:indicatorColor="@color/gold"
+                        app:indicatorSize="150dp"
+                        app:trackColor="@color/olive_100"
+                        app:trackCornerRadius="6dp"
+                        app:trackThickness="12dp"
+                        tools:progress="65" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtSuiviPourcent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="serif"
+                            android:textColor="@color/olive_900"
+                            android:textSize="30sp"
+                            tools:text="65%" />
+
+                        <TextView
+                            android:id="@+id/txtSuiviEtat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.Zitouna.Overline"
+                            android:textSize="10sp"
+                            tools:text="Malaxage" />
+                    </LinearLayout>
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/txtSuiviSub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textAppearance="@style/TextAppearance.Zitouna.Body"
+                    tools:text="≈ 1h 20 restant" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_kpi"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rang_file"
+                            android:textAppearance="@style/TextAppearance.Zitouna.Overline"
+                            android:textColor="@color/muted"
+                            android:textSize="9sp" />
+
+                        <TextView
+                            android:id="@+id/txtRang"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/olive_900"
+                            android:textStyle="bold"
+                            tools:text="3e position" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_kpi"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lot_actif"
+                            android:textAppearance="@style/TextAppearance.Zitouna.Overline"
+                            android:textColor="@color/muted"
+                            android:textSize="9sp" />
+
+                        <TextView
+                            android:id="@+id/txtLotActif"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/olive_900"
+                            android:textStyle="bold"
+                            tools:text="#LOT-008 (Chétoui)" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -250,11 +381,18 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/txtApportsSub"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="@string/aucun_apport"
         android:textAppearance="@style/TextAppearance.Zitouna.Body" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerApports"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp" />
 
     <LinearLayout
         android:layout_width="match_parent"

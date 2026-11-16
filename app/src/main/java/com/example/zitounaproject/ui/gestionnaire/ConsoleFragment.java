@@ -45,7 +45,8 @@ public class ConsoleFragment extends Fragment {
         header = new HeaderActions(this, binding.btnNotifications, binding.txtBadge, binding.btnLogout);
         binding.btnGererRdv.setOnClickListener(v -> openTab(R.id.nav_rdv));
         binding.btnPlanning.setOnClickListener(v -> openTab(R.id.nav_rdv));
-        binding.btnEnregistrerLot.setOnClickListener(v -> openTab(R.id.nav_lots));
+        binding.btnEnregistrerLot.setOnClickListener(v ->
+                startActivity(new android.content.Intent(requireContext(), EnregistrerLotActivity.class)));
         binding.txtAvatar.setOnClickListener(v -> openTab(R.id.nav_profil));
         return binding.getRoot();
     }

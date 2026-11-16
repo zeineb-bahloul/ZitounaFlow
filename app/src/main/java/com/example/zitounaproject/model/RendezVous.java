@@ -27,6 +27,8 @@ public class RendezVous {
     private String motifRefus;
     private Date dateDemande;
     private Date dateTraitement;
+    /** Lot créé à l'arrivée de l'agriculteur (sprint 3). */
+    private String lotId;
 
     public RendezVous() {
         // Requis par Firestore
@@ -115,4 +117,7 @@ public class RendezVous {
 
     public Date getDateTraitement() { return dateTraitement; }
     public void setDateTraitement(Date dateTraitement) { this.dateTraitement = dateTraitement; }
+
+    public String getLotId() { return lotId; }
+    public void setLotId(String lotId) { this.lotId = lotId; }
 }

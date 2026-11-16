@@ -85,6 +85,22 @@ terminal » à la connexion, bannière « N demandes de pressage à valider » d
 | US-15 | En tant qu'**agriculteur**, je veux suivre mes lots et leur statut en temps réel. | BF-12 | M | 3 |
 | US-16 | En tant qu'**agriculteur**, je veux connaître ma position dans la file et le temps d'attente estimé (poids des lots précédents / capacité machine). | BF-13 | M | 3 |
 
+**Critères d'acceptation principaux**
+- US-12 : producteur choisi parmi les agriculteurs inscrits, depuis un rendez-vous confirmé du jour
+  (pré-remplissage) ou saisi pour un apport sans compte ; pesée brut − tare (proposée selon le
+  contenant) = poids net ; numéro séquentiel `LOT-001`, `LOT-002`… attribué par transaction ;
+  statut « Réceptionné », ajout en fin de file, historique et notification de l'agriculteur.
+- US-13 : file ordonnée (lots en traitement puis lots en attente) ; boutons ↑ ↓ pour réordonner,
+  ★ pour placer un lot en tête ; filtres Tous / En traitement / En attente.
+- US-14 : passage Réceptionné → En attente → En traitement uniquement dans l'ordre (contrôle en
+  transaction) ; chaque changement est tracé dans `lots/{id}/historique` et notifié.
+  Le passage à « Prêt à récupérer » se fait avec la saisie de l'huile (sprint 4).
+- US-15 : liste « Mes Lots » en temps réel, détail avec les 4 étapes horodatées et l'historique ;
+  tableau de bord avec le suivi en direct (avancement du traitement) et les apports du jour.
+- US-16 : `FileAttenteCalculator` : attente = somme des poids des lots précédents (et du temps
+  restant du lot en traitement) / 1 000 kg/h ; position et attente enregistrées sur chaque lot
+  après chaque modification de la file ; test unitaire `FileAttenteCalculatorTest`.
+
 ---
 
 ## Sprint 4 — Production d'huile, récupération et historique
@@ -125,7 +141,7 @@ terminal » à la connexion, bannière « N demandes de pressage à valider » d
 |--------|--------|--------|
 | Sprint 1 | Terminé | `Sprint 1 : socle Firebase, authentification, navigation par rôle et profil` |
 | Sprint 2 | Terminé | `Sprint 2 : rendez-vous, notifications et compléments des maquettes` |
-| Sprint 3 | À faire | |
+| Sprint 3 | Terminé | `Sprint 3 : lots, file d'attente et suivi des lots` |
 | Sprint 4 | À faire | |
 | Sprint 5 | À faire | |
 | Sprint 6 | À faire | |
