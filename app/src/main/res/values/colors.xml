@@ -14,6 +14,7 @@
     <color name="muted">#7B7A66</color>
     <color name="stroke">#E6DEC6</color>
     <color name="error">#B3261E</color>
+    <color name="red_light">#FBE4E2</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

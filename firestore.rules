@@ -25,5 +25,34 @@ service cloud.firestore {
         && request.resource.data.email == resource.data.email;
       allow delete: if false;
     }
+
+    // Sprint 2 : rendez-vous
+    match /rendezVous/{rdvId} {
+      allow read: if isGestionnaire()
+        || (signedIn() && resource.data.agriculteurId == request.auth.uid);
+      // L'agriculteur crée sa propre demande, toujours « en attente »
+      allow create: if signedIn()
+        && request.resource.data.agriculteurId == request.auth.uid
+        && request.resource.data.statut == 'EN_ATTENTE_CONFIRMATION';
+      // Le gestionnaire confirme/refuse ; l'agriculteur peut seulement annuler la sienne
+      allow update: if isGestionnaire()
+        || (signedIn() && resource.data.agriculteurId == request.auth.uid
+            && request.resource.data.statut == 'ANNULE');
+      allow delete: if false;
+    }
+
+    // Compteurs de réservations par créneau (un document par jour)
+    match /planning/{jour} {
+      allow read, write: if signedIn();
+    }
+
+    // Notifications : créées par le gestionnaire, lues par leur destinataire
+    match /notifications/{notifId} {
+      allow read: if signedIn() && resource.data.destinataireId == request.auth.uid;
+      allow update: if signedIn() && resource.data.destinataireId == request.auth.uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['lue']);
+      allow create: if isGestionnaire();
+      allow delete: if false;
+    }
   }
 }

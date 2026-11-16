@@ -1,6 +1,5 @@
 package com.example.zitounaproject.ui.common;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +18,7 @@ import com.example.zitounaproject.databinding.FragmentProfilBinding;
 import com.example.zitounaproject.model.Agriculteur;
 import com.example.zitounaproject.model.Gestionnaire;
 import com.example.zitounaproject.model.Utilisateur;
-import com.example.zitounaproject.ui.auth.OnboardingActivity;
 import com.example.zitounaproject.util.Validators;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.SimpleDateFormat;
@@ -162,16 +159,7 @@ public class ProfilFragment extends Fragment {
     }
 
     private void confirmLogout() {
-        new MaterialAlertDialogBuilder(requireContext())
-                .setMessage(R.string.logout_confirm)
-                .setNegativeButton(R.string.cancel, null)
-                .setPositiveButton(R.string.logout, (dialog, which) -> {
-                    repository.logout();
-                    Intent intent = new Intent(requireContext(), OnboardingActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                })
-                .show();
+        SessionActions.confirmerDeconnexion(requireActivity());
     }
 
     private void setText(TextInputLayout layout, @Nullable String value) {

@@ -106,4 +106,80 @@
     <string name="bientot">Bientôt disponible</string>
     <string name="prevu_sprint">Cette fonctionnalité est prévue au sprint %1$d.</string>
     <string name="loading">Chargement…</string>
+
+    <!-- Sprint 1 (compléments) -->
+    <string name="memoriser">Mémoriser ce terminal</string>
+    <string name="notifications">Notifications</string>
+    <string name="aucune_notification">Aucune notification pour le moment.</string>
+    <string name="non">Non</string>
+
+    <!-- Sprint 2 : rendez-vous (agriculteur) -->
+    <string name="rdv_overline">Priorité récolte fraîche</string>
+    <string name="rdv_titre">Mes rendez-vous</string>
+    <string name="rdv_resume">%1$d à venir • %2$d en attente de confirmation</string>
+    <string name="rdv_nouveau">Réserver un créneau</string>
+    <string name="filtre_a_venir">À venir</string>
+    <string name="filtre_en_attente">En attente</string>
+    <string name="filtre_historique">Historique</string>
+    <string name="filtre_tous">Tous</string>
+    <string name="rdv_vide">Aucun rendez-vous</string>
+    <string name="rdv_vide_sub">Réservez un créneau pour faire presser vos olives sans attendre.</string>
+    <string name="rdv_annuler">Annuler la demande</string>
+    <string name="rdv_annuler_titre">Annuler ce rendez-vous ?</string>
+    <string name="rdv_annuler_message">Votre créneau du %1$s (%2$s) sera libéré.</string>
+    <string name="rdv_annule_ok">Rendez-vous annulé</string>
+    <string name="demande_titre">Réserver un créneau de pressage</string>
+    <string name="demande_sub">Évitez l\'attente et assurez un pressage rapide après la récolte pour préserver la qualité de votre huile.</string>
+    <string name="creneaux_titre">Créneaux d\'extraction</string>
+    <string name="duree_standard">Durée standard 2h</string>
+    <string name="creneau_complet">Complet</string>
+    <string name="creneau_passe">Passé</string>
+    <string name="creneau_derniere_place">Dernière place</string>
+    <string name="creneau_places">%1$d places restantes</string>
+    <string name="variete_titre">Variété dominante</string>
+    <string name="variete_sub">Permet d\'adapter le malaxage et la centrifugation</string>
+    <string name="quantite_titre">Quantité récoltée estimée</string>
+    <string name="kilogrammes">kilogrammes</string>
+    <string name="caisses_estimees">≈ %1$d caisses standard (50 kg)</string>
+    <string name="estimation_titre">Calcul prédictif ZitounaFlow</string>
+    <string name="estimation_duree">Durée de traitement</string>
+    <string name="estimation_huile">Huile estimée</string>
+    <string name="estimation_note">Estimation indicative (rendement habituel de 18 à 22 %).</string>
+    <string name="remarque_hint">Remarque pour l\'huilerie (facultatif)</string>
+    <string name="demande_envoyer">Envoyer la demande de réservation</string>
+    <string name="demande_note">Vous serez notifié dès que l\'huilerie aura confirmé votre créneau.</string>
+    <string name="rdv_envoye">Demande envoyée : en attente de confirmation</string>
+    <string name="err_creneau">Choisissez un créneau disponible.</string>
+    <string name="err_variete">Choisissez la variété dominante.</string>
+    <string name="err_quantite">La quantité doit être comprise entre 50 et 20 000 kg.</string>
+    <string name="prochain_rdv">Mon prochain rendez-vous</string>
+    <string name="voir_tout">Voir tout</string>
+
+    <!-- Sprint 2 : rendez-vous (gestionnaire) -->
+    <string name="gestion_overline">Planning des apports</string>
+    <string name="gestion_titre">Gestion des rendez-vous</string>
+    <string name="aujourdhui">Aujourd\'hui</string>
+    <string name="choisir_date">Choisir une date</string>
+    <string name="capacite_titre">Capacité du quai de réception</string>
+    <string name="capacite_reservee">%1$s / %2$s kg réservés</string>
+    <string name="capacite_reste">Reste %1$s</string>
+    <string name="capacite_confirme">Confirmé (%1$s)</string>
+    <string name="capacite_attente">En attente (%1$s)</string>
+    <string name="filtre_en_attente_n">En attente (%1$d)</string>
+    <string name="filtre_confirmes">Confirmés</string>
+    <string name="gestion_vide">Aucun rendez-vous pour ce jour.</string>
+    <string name="confirmer">Confirmer</string>
+    <string name="refuser">Refuser</string>
+    <string name="refus_titre">Refuser la demande</string>
+    <string name="refus_message">Indiquez le motif du refus pour %1$s. L\'agriculteur sera notifié.</string>
+    <string name="refus_hint">Motif du refus</string>
+    <string name="err_motif">Le motif du refus est obligatoire.</string>
+    <string name="rdv_confirme_ok">Rendez-vous de %1$s confirmé</string>
+    <string name="rdv_refuse_ok">Demande refusée, l\'agriculteur a été notifié</string>
+    <string name="aucune_demande">Aucune demande de pressage en attente</string>
+    <string name="planning">Planning</string>
+    <plurals name="demandes_a_valider">
+        <item quantity="one">%1$d demande de pressage à valider</item>
+        <item quantity="other">%1$d demandes de pressage à valider</item>
+    </plurals>
 </resources>

@@ -40,6 +40,10 @@ réinitialiser son mot de passe, gérer son profil, et arrive sur l'espace propr
 - US-06 : l'e-mail et le rôle ne sont pas modifiables ; les modifications sont persistées.
 - US-07 : agriculteur → Accueil / RDV / Lots / Profil ; gestionnaire → Console / RDV / Lots / Stats / Profil.
 
+**Compléments ajoutés pendant le sprint 2 (revue des maquettes)** : bouton de déconnexion
+et cloche des notifications dans l'en-tête des tableaux de bord, option « Mémoriser ce
+terminal » à la connexion, bannière « N demandes de pressage à valider » dans la console.
+
 ---
 
 ## Sprint 2 — Rendez-vous
@@ -52,6 +56,20 @@ réinitialiser son mot de passe, gérer son profil, et arrive sur l'espace propr
 | US-09 | En tant qu'**agriculteur**, je veux consulter l'état de mes rendez-vous et annuler une demande en attente. | BF-11 | M | 3 |
 | US-10 | En tant que **gestionnaire**, je veux consulter les demandes (par jour) et les confirmer ou les refuser avec un motif. | BF-20 | M | 5 |
 | US-11 | En tant qu'**utilisateur**, je veux recevoir une notification dans l'application quand un rendez-vous change d'état. | BF-05 | S | 3 |
+
+**Critères d'acceptation principaux**
+- US-08 : choix d'un jour parmi les 14 prochains, d'un créneau (08:00-10:00, 10:30-12:30,
+  14:00-16:00, 16:30-18:30) avec places restantes (4 par créneau, créneaux passés grisés),
+  de la variété et de la quantité (50 à 20 000 kg) ; estimation du nombre de caisses, de la
+  durée de traitement (capacité machine 1 000 kg/h) et de l'huile attendue (18 à 22 %) ;
+  la demande est créée avec le statut « En attente de confirmation ». Une transaction
+  Firestore empêche la surréservation d'un créneau.
+- US-09 : filtres À venir / En attente / Historique / Tous, mise à jour en temps réel ;
+  annulation possible tant que le rendez-vous est actif et pas encore passé (la place est libérée).
+- US-10 : navigation jour par jour ou via un calendrier ; capacité du quai (22 000 kg/jour)
+  avec kg confirmés et en attente ; refus impossible sans motif.
+- US-11 : notification enregistrée dans `notifications` à la confirmation et au refus ;
+  badge du nombre de non lues sur la cloche ; les notifications sont marquées lues à l'ouverture.
 
 ---
 
@@ -106,7 +124,7 @@ réinitialiser son mot de passe, gérer son profil, et arrive sur l'espace propr
 | Sprint | Statut | Commit |
 |--------|--------|--------|
 | Sprint 1 | Terminé | `Sprint 1 : socle Firebase, authentification, navigation par rôle et profil` |
-| Sprint 2 | À faire | |
+| Sprint 2 | Terminé | `Sprint 2 : rendez-vous, notifications et compléments des maquettes` |
 | Sprint 3 | À faire | |
 | Sprint 4 | À faire | |
 | Sprint 5 | À faire | |

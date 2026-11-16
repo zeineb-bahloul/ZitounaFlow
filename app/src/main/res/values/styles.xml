@@ -60,6 +60,27 @@
         <item name="cardElevation">0dp</item>
     </style>
 
+    <!-- Puces de filtre / choix -->
+    <style name="Widget.Zitouna.Chip" parent="Widget.Material3.Chip.Filter">
+        <item name="chipBackgroundColor">@color/chip_bg</item>
+        <item name="android:textColor">@color/chip_text</item>
+        <item name="chipStrokeColor">@color/stroke</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="chipCornerRadius">50dp</item>
+        <item name="chipMinHeight">40dp</item>
+    </style>
+
+    <!-- Boutons ronds de l'en-tête (notifications, déconnexion) -->
+    <style name="Widget.Zitouna.IconButton" parent="">
+        <item name="android:layout_width">44dp</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:background">@drawable/bg_icon_button</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="tint">@color/olive_900</item>
+    </style>
+
     <!-- Typographie -->
     <style name="TextAppearance.Zitouna.Display" parent="TextAppearance.Material3.HeadlineMedium">
         <item name="android:fontFamily">serif</item>

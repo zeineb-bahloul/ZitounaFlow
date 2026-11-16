@@ -46,6 +46,13 @@
             android:name=".ui.gestionnaire.GestionnaireMainActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- Sprint 2 : rendez-vous et notifications -->
+        <activity
+            android:name=".ui.agriculteur.DemandeRdvActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ui.common.NotificationsActivity" android:exported="false" />
     </application>
 
 </manifest>

@@ -44,13 +44,16 @@ app/src/main/java/com/example/zitounaproject/
 | Collection | Document | Champs principaux |
 |---|---|---|
 | `utilisateurs` | uid | nom, prenom, telephone, email, role, dateCreation, nomExploitation, adresse / matricule |
+| `rendezVous` | auto | agriculteurId, date, jour, creneau, variete, quantiteEstimeeKg, remarque, statut, motifRefus, dateDemande, dateTraitement |
+| `planning` | yyyy-MM-dd | s0..s3 : nombre de réservations actives par créneau |
+| `notifications` | auto | destinataireId, titre, message, type, dateEnvoi, lue |
 
 ## Avancement
 
 | Sprint | Contenu | Statut |
 |---|---|---|
 | 1 | Firebase, authentification, navigation par rôle, profil | ✅ |
-| 2 | Rendez-vous | ⏳ |
+| 2 | Rendez-vous, notifications | ✅ |
 | 3 | Lots et file d'attente | ⏳ |
 | 4 | Huile produite, récupération, historique | ⏳ |
 | 5 | Statistiques et notifications | ⏳ |

@@ -25,7 +25,7 @@ public class AgriculteurMainActivity extends RoleMainActivity {
     @Override
     protected Fragment createFragment(int menuItemId) {
         if (menuItemId == R.id.nav_rdv) {
-            return PlaceholderFragment.newInstance(getString(R.string.nav_rdv), R.drawable.ic_calendar, 2);
+            return new MesRendezVousFragment();
         } else if (menuItemId == R.id.nav_lots) {
             return PlaceholderFragment.newInstance(getString(R.string.nav_lots), R.drawable.ic_lots, 3);
         } else if (menuItemId == R.id.nav_profil) {

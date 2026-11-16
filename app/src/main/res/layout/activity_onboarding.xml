@@ -267,8 +267,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:text="@string/onb_start"
-        app:icon="@drawable/ic_arrow_forward"
-        app:iconGravity="end" />
+        app:icon="@drawable/ic_arrow_back"
+        app:iconGravity="end"
+        android:rotationY="0" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnGestionnaire"
