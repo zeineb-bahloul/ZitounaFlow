@@ -67,6 +67,14 @@ public class LotRepository {
                 .addSnapshotListener((snap, e) -> deliver(snap, e, callback));
     }
 
+    /** Lots dont la date {@code champ} est postérieure à {@code depuis}, en temps réel (console). */
+    public ListenerRegistration ecouterDepuis(@NonNull String champ, @NonNull Date depuis,
+                                              @NonNull Callback<List<Lot>> callback) {
+        return db.collection(FirestoreCollections.LOTS)
+                .whereGreaterThanOrEqualTo(champ, depuis)
+                .addSnapshotListener((snap, e) -> deliver(snap, e, callback));
+    }
+
     /** US-21 : tous les lots (les plus récents d'abord), pour l'historique global. */
     public void chargerHistorique(@NonNull Callback<List<Lot>> callback) {
         db.collection(FirestoreCollections.LOTS)

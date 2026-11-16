@@ -47,6 +47,9 @@ public class Lot {
     private Date dateEstimation;
     private Date dateDebutTraitement;
 
+    /** Qualité validée par le gestionnaire après l'analyse IA (sprint 6). */
+    private QualiteOlive qualite;
+
     // Production (sprint 4)
     private Double quantiteHuileL;
     private Double rendementPourcent;
@@ -194,6 +197,10 @@ public class Lot {
 
     public Date getDateDebutTraitement() { return dateDebutTraitement; }
     public void setDateDebutTraitement(Date dateDebutTraitement) { this.dateDebutTraitement = dateDebutTraitement; }
+
+    @Nullable
+    public QualiteOlive getQualite() { return qualite; }
+    public void setQualite(QualiteOlive qualite) { this.qualite = qualite; }
 
     @Nullable
     public Double getQuantiteHuileL() { return quantiteHuileL; }

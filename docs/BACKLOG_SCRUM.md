@@ -139,9 +139,24 @@ terminal » à la connexion, bannière « N demandes de pressage à valider » d
 
 | ID | User story | BF | Prio | Pts |
 |----|-----------|----|------|-----|
-| US-22 | En tant que **gestionnaire**, je veux voir les statistiques (lots par jour, poids total, huile produite, rendement moyen, temps d'attente moyen, répartition de la qualité) sur une période. | BF-28 | M | 8 |
-| US-23 | En tant que **gestionnaire**, je veux un tableau de bord (console) avec les indicateurs du jour. | BF-28 | S | 3 |
-| US-24 | En tant qu'**agriculteur**, je veux être notifié quand mon lot change de statut ou est prêt à récupérer, et consulter mes notifications. | BF-05 | M | 5 |
+| US-22 ✅ | En tant que **gestionnaire**, je veux voir les statistiques (lots par jour, poids total, huile produite, rendement moyen, temps d'attente moyen, répartition de la qualité) sur une période. | BF-28 | M | 8 |
+| US-23 ✅ | En tant que **gestionnaire**, je veux un tableau de bord (console) avec les indicateurs du jour. | BF-28 | S | 3 |
+| US-24 ✅ | En tant qu'**agriculteur**, je veux être notifié quand mon lot change de statut ou est prêt à récupérer, et consulter mes notifications. | BF-05 | M | 5 |
+
+**Critères d'acceptation principaux**
+- US-22 : onglet Stats (maquette « Statistiques & Rendement ») ; périodes Aujourd'hui / 7 jours /
+  30 jours / Campagne ; huile produite, olives reçues, lots reçus et pressés, rendement moyen
+  (huile / poids des lots pressés), temps d'attente moyen (réception → début du traitement) ;
+  histogramme par heure, jour ou mois (lots ou kg) ; répartition de la qualité (Excellente,
+  Acceptable, Défectueuse, non analysés — alimentée par l'IA au sprint 6) ; rendement par variété.
+  Classe `Statistiques` conforme au diagramme, tests `StatistiquesTest`.
+- US-23 : console : lots et kg reçus, olives pressées, huile extraite et rendement du jour en
+  temps réel, histogramme de l'activité de réception par heure.
+- US-24 : notifications de lot (réception, file, traitement, prêt, récupération) affichées aussi
+  dans la barre de notifications Android (autorisation demandée sur Android 13+), sans doublon.
+  Limite : avec le plan gratuit Firebase Spark (pas de Cloud Functions), elles s'affichent tant que
+  l'application est ouverte ou en arrière-plan ; un vrai push application fermée demanderait FCM
+  + Cloud Functions (plan Blaze).
 
 ---
 
@@ -163,5 +178,5 @@ terminal » à la connexion, bannière « N demandes de pressage à valider » d
 | Sprint 2 | Terminé | `Sprint 2 : rendez-vous, notifications et compléments des maquettes` |
 | Sprint 3 | Terminé | `Sprint 3 : lots, file d'attente et suivi des lots` |
 | Sprint 4 | Terminé | `Sprint 4 : huile produite, récupération, historiques et bilans` |
-| Sprint 5 | À faire | |
+| Sprint 5 | Terminé | `Sprint 5 : statistiques, indicateurs de la console et notifications Android` |
 | Sprint 6 | À faire | |

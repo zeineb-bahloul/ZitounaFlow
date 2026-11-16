@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.zitounaproject.R;
-import com.example.zitounaproject.ui.common.PlaceholderFragment;
 import com.example.zitounaproject.ui.common.ProfilFragment;
 import com.example.zitounaproject.ui.common.RoleMainActivity;
 
@@ -29,7 +28,7 @@ public class GestionnaireMainActivity extends RoleMainActivity {
         } else if (menuItemId == R.id.nav_lots) {
             return new FileMoulinFragment();
         } else if (menuItemId == R.id.nav_stats) {
-            return PlaceholderFragment.newInstance(getString(R.string.nav_stats), R.drawable.ic_stats, 5);
+            return new StatistiquesFragment();
         } else if (menuItemId == R.id.nav_profil) {
             return new ProfilFragment();
         }

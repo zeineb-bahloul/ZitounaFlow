@@ -186,11 +186,22 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/txtKpiLots"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/kpi_vide"
                 android:textAppearance="@style/TextAppearance.Zitouna.Value" />
+
+            <TextView
+                android:id="@+id/txtKpiLotsSub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/muted"
+                android:textSize="11sp"
+                tools:text="3 240 kg reçus" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -226,11 +237,22 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/txtKpiOlives"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/kpi_vide"
                 android:textAppearance="@style/TextAppearance.Zitouna.Value" />
+
+            <TextView
+                android:id="@+id/txtKpiOlivesSub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/muted"
+                android:textSize="11sp"
+                tools:text="3 240 kg reçus" />
+
         </LinearLayout>
 
     </LinearLayout>
@@ -268,16 +290,27 @@
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:contentDescription="@null"
-                    android:src="@drawable/ic_leaf"
+                    android:src="@drawable/ic_drop"
                     app:tint="@color/olive_500" />
             </LinearLayout>
 
             <TextView
+                android:id="@+id/txtKpiHuile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/kpi_vide"
                 android:textAppearance="@style/TextAppearance.Zitouna.Value" />
+
+            <TextView
+                android:id="@+id/txtKpiHuileSub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/muted"
+                android:textSize="11sp"
+                tools:text="3 240 kg reçus" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -313,22 +346,57 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/txtKpiRendement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/kpi_vide"
                 android:textAppearance="@style/TextAppearance.Zitouna.Value" />
+
+            <TextView
+                android:id="@+id/txtKpiRendementSub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/muted"
+                android:textSize="11sp"
+                tools:text="3 240 kg reçus" />
+
         </LinearLayout>
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:text="@string/kpi_hint"
-        android:textAppearance="@style/TextAppearance.Zitouna.Body"
-        android:textSize="12sp" />
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activite_reception"
+                android:textAppearance="@style/TextAppearance.Zitouna.Title" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activite_reception_sub"
+                android:textAppearance="@style/TextAppearance.Zitouna.Body"
+                android:textSize="12sp" />
+
+            <com.example.zitounaproject.ui.widget.BarChartView
+                android:id="@+id/chartActivite"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginTop="10dp" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:layout_width="wrap_content"

@@ -303,4 +303,35 @@
         <item quantity="one">%1$d affiché</item>
         <item quantity="other">%1$d affichés</item>
     </plurals>
+
+    <!-- Sprint 5 : statistiques, console, notifications système -->
+    <string name="stats_overline">Tableau directeur</string>
+    <string name="stats_titre">Statistiques &amp; Rendement</string>
+    <string name="campagne_n_simple">Campagne %1$s</string>
+    <string name="periode_du_au">Lots reçus du %1$s au %2$s</string>
+    <string name="stat_huile">Huile produite</string>
+    <string name="stat_olives">Olives reçues</string>
+    <string name="stat_lots">Lots reçus</string>
+    <string name="stat_rendement">Rendement moyen</string>
+    <string name="stat_attente">Temps d\'attente moyen</string>
+    <string name="kpi_presses">%1$d lots pressés</string>
+    <string name="chart_heure">Réception par heure</string>
+    <string name="chart_jour">Réception par jour</string>
+    <string name="chart_mois">Réception par mois</string>
+    <string name="serie_lots">Lots</string>
+    <string name="serie_kg">Kg</string>
+    <string name="qualite_titre">Qualité des olives</string>
+    <string name="qualite_sub">Classes validées après l\'analyse IA (sprint 6)</string>
+    <string name="excellente_court">Excellente</string>
+    <string name="non_analyses">Non analysés — %1$d lots</string>
+    <string name="rendement_variete_titre">Rendement par variété</string>
+    <string name="rendement_variete_vide">Aucun lot pressé sur cette période.</string>
+    <string name="variete_detail">%1$s pressés • %2$s L</string>
+    <string name="kpi_kg_recus">%1$s reçus</string>
+    <string name="kpi_aujourdhui">Depuis ce matin</string>
+    <string name="kpi_rendement_jour">Lots pressés aujourd\'hui</string>
+    <string name="activite_reception">Activité de réception</string>
+    <string name="activite_reception_sub">Kg d\'olives reçus par heure (6h – 18h)</string>
+    <string name="canal_notifications">Suivi des rendez-vous et des lots</string>
+    <string name="canal_notifications_desc">Confirmations de rendez-vous, changements de statut des lots, huile prête.</string>
 </resources>

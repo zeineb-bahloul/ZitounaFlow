@@ -26,8 +26,8 @@ historique, statistiques et analyse de la qualité des olives par IA.
 
 ## Tests
 
-`FileAttenteCalculatorTest` et `LotFilterTest` (dossier `app/src/test`) vérifient le calcul de la
-file d'attente, du rendement, des campagnes, de la recherche et des bilans. Dans Android Studio : clic droit sur le fichier > *Run*.
+`FileAttenteCalculatorTest`, `LotFilterTest` et `StatistiquesTest` (dossier `app/src/test`) vérifient le calcul de la
+file d'attente, du rendement, des campagnes, de la recherche, des bilans et des statistiques. Dans Android Studio : clic droit sur le fichier > *Run*.
 
 ## Architecture
 
@@ -64,5 +64,5 @@ app/src/main/java/com/example/zitounaproject/
 | 2 | Rendez-vous, notifications | ✅ |
 | 3 | Lots et file d'attente | ✅ |
 | 4 | Huile produite, récupération, historiques et bilans | ✅ |
-| 5 | Statistiques et notifications | ⏳ |
+| 5 | Statistiques, console, notifications Android | ✅ |
 | 6 | Analyse IA de la qualité des olives | ⏳ |
