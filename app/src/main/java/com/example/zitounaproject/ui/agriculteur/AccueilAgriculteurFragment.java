@@ -60,7 +60,7 @@ public class AccueilAgriculteurFragment extends Fragment {
         header = new HeaderActions(this, binding.btnNotifications, binding.txtBadge, binding.btnLogout);
         binding.btnDemanderCreneau.setOnClickListener(v ->
                 startActivity(new Intent(requireContext(), DemandeRdvActivity.class)));
-        binding.txtVoirRdv.setOnClickListener(v -> openTab(R.id.nav_rdv));
+        binding.txtVoirRdv.setOnClickListener(v -> openTab(R.id.nav_lots));
         binding.cardProchainRdv.setOnClickListener(v -> openTab(R.id.nav_rdv));
         binding.txtAvatar.setOnClickListener(v -> openTab(R.id.nav_profil));
         binding.cardSuivi.setOnClickListener(v -> openTab(R.id.nav_lots));

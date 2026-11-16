@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cream"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            style="@style/Widget.Zitouna.IconButton"
+            android:contentDescription="Retour"
+            android:src="@drawable/ic_arrow_back" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/registre_overline"
+                android:textAppearance="@style/TextAppearance.Zitouna.Overline" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/historique_global"
+                android:textAppearance="@style/TextAppearance.Zitouna.Headline" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputRecherche"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:hint="@string/recherche_lots_gest"
+        app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/ic_search"
+        app:startIconTint="@color/muted">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/filtre_statut"
+        android:textAppearance="@style/TextAppearance.Zitouna.Overline" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:scrollbars="none">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupStatut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:selectionRequired="true"
+            app:singleLine="true"
+            app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipTousHist"
+            style="@style/Widget.Zitouna.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/filtre_tous" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipEnCoursHist"
+            style="@style/Widget.Zitouna.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filtre_en_cours" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipTraitementHist"
+            style="@style/Widget.Zitouna.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filtre_en_traitement" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipPretsHist"
+            style="@style/Widget.Zitouna.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filtre_prets" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipRecuperes"
+            style="@style/Widget.Zitouna.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filtre_recuperes" />
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/filtre_periode"
+        android:textAppearance="@style/TextAppearance.Zitouna.Overline" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:scrollbars="none">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupPeriode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:selectionRequired="true"
+            app:singleLine="true"
+            app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipToutePeriode"
+            style="@style/Widget.Zitouna.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/filtre_tout" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipAujourdhui"
+            style="@style/Widget.Zitouna.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/aujourdhui" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip7Jours"
+            style="@style/Widget.Zitouna.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filtre_7_jours" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip30Jours"
+            style="@style/Widget.Zitouna.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filtre_30_jours" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipCampagne"
+            style="@style/Widget.Zitouna.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filtre_campagne" />
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/variete_titre"
+        android:textAppearance="@style/TextAppearance.Zitouna.Overline" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:scrollbars="none">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupVariete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:selectionRequired="true"
+            app:singleLine="true"
+            app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipToutesVarietes"
+            style="@style/Widget.Zitouna.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/filtre_toutes" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipChetoui"
+            style="@style/Widget.Zitouna.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chétoui" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipChemlali"
+            style="@style/Widget.Zitouna.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chemlali" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipPicholine"
+            style="@style/Widget.Zitouna.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Picholine" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipMixte"
+            style="@style/Widget.Zitouna.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mixte" />
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/bg_cta"
+        android:orientation="horizontal"
+        android:padding="14dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtTotLots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                tools:text="18" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LOTS"
+                android:textColor="@color/gold_light"
+                android:textSize="9sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtTotKg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                tools:text="24 600" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="KG D'OLIVES"
+                android:textColor="@color/gold_light"
+                android:textSize="9sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtTotHuile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                tools:text="5 180" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LITRES"
+                android:textColor="@color/gold_light"
+                android:textSize="9sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtTotRendement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                tools:text="21,1 %" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RENDEMENT"
+                android:textColor="@color/gold_light"
+                android:textSize="9sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:indicatorColor="@color/olive_700" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp" />
+
+    <LinearLayout
+        android:id="@+id/layoutEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <FrameLayout
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:background="@drawable/bg_circle_gold_light">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_history"
+                app:tint="@color/gold_dark" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="@string/historique_vide"
+            android:textAppearance="@style/TextAppearance.Zitouna.Title" />
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnExporter"
+        style="@style/Widget.Zitouna.Button.Outlined"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/exporter_registre"
+        app:icon="@drawable/ic_share"
+        app:iconTint="@color/olive_700" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:text="@string/exporter_note"
+        android:textAppearance="@style/TextAppearance.Zitouna.Body"
+        android:textSize="11sp" />
+
+
+    </LinearLayout>
+</ScrollView>

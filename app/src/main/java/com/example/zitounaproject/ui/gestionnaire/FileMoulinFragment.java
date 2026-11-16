@@ -57,6 +57,8 @@ public class FileMoulinFragment extends Fragment implements LotAdapter.Listener 
         binding.btnEnregistrerLot.setOnClickListener(v ->
                 startActivity(new Intent(requireContext(), EnregistrerLotActivity.class)));
         binding.chipGroupFiltre.setOnCheckedStateChangeListener((g, ids) -> afficher());
+        binding.btnHistorique.setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), HistoriqueGlobalActivity.class)));
         binding.txtCapacite.setText(Formats.nombre(Creneaux.CAPACITE_MACHINE_KG_H) + " kg/h");
         return binding.getRoot();
     }

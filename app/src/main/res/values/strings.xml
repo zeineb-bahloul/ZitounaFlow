@@ -270,4 +270,37 @@
     <string name="recuperation_ok">Récupération du lot %1$s enregistrée</string>
     <string name="recupere_le">Récupéré le %1$s</string>
     <string name="a_recuperer">Huile prête, en attente de récupération</string>
+
+    <!-- Sprint 4 : historiques et bilans -->
+    <string name="historique">Historique</string>
+    <string name="historique_global">Historique global</string>
+    <string name="registre_overline">Registre oléicole</string>
+    <string name="registre_titre">Registre des lots ZitounaFlow</string>
+    <string name="mes_campagnes_titre">Mes Campagnes &amp; Lots</string>
+    <string name="tracabilite_sub">Traçabilité complète de vos pressées</string>
+    <string name="recherche_lots_agri">N° de lot, variété, parcelle…</string>
+    <string name="recherche_lots_gest">N° de lot, producteur, téléphone, variété…</string>
+    <string name="toutes_campagnes">Toutes (%1$d)</string>
+    <string name="campagne_n">Campagne %1$s (%2$d)</string>
+    <string name="bilan_campagne">Bilan campagne %1$s</string>
+    <string name="bilan_toutes">Bilan toutes campagnes</string>
+    <string name="en_cours_maj">EN COURS</string>
+    <string name="cloturee">CLÔTURÉE</string>
+    <string name="lots_et_pressees">Lots &amp; pressées</string>
+    <string name="filtre_termines">Terminés</string>
+    <string name="filtre_recuperes">Récupérés</string>
+    <string name="filtre_tout">Tout</string>
+    <string name="filtre_toutes">Toutes</string>
+    <string name="filtre_7_jours">7 derniers jours</string>
+    <string name="filtre_30_jours">30 derniers jours</string>
+    <string name="filtre_campagne">Campagne en cours</string>
+    <string name="filtre_statut">Statut</string>
+    <string name="filtre_periode">Période de réception</string>
+    <string name="exporter_registre">Exporter le registre (CSV)</string>
+    <string name="exporter_note">Partage les lots affichés au format CSV (Excel, e-mail, Drive…).</string>
+    <string name="historique_vide">Aucun lot ne correspond à ces filtres.</string>
+    <plurals name="lots_affiches">
+        <item quantity="one">%1$d affiché</item>
+        <item quantity="other">%1$d affichés</item>
+    </plurals>
 </resources>

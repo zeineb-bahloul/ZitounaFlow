@@ -67,6 +67,16 @@ public class LotRepository {
                 .addSnapshotListener((snap, e) -> deliver(snap, e, callback));
     }
 
+    /** US-21 : tous les lots (les plus récents d'abord), pour l'historique global. */
+    public void chargerHistorique(@NonNull Callback<List<Lot>> callback) {
+        db.collection(FirestoreCollections.LOTS)
+                .orderBy("dateReception", Query.Direction.DESCENDING)
+                .limit(1000)
+                .get()
+                .addOnSuccessListener(snap -> deliver(snap, null, callback))
+                .addOnFailureListener(e -> callback.onError(ErrorMessages.from(e)));
+    }
+
     public ListenerRegistration ecouterLot(@NonNull String lotId, @NonNull Callback<Lot> callback) {
         return db.collection(FirestoreCollections.LOTS).document(lotId)
                 .addSnapshotListener((doc, e) -> {

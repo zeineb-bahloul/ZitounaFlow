@@ -356,5 +356,15 @@
         app:icon="@drawable/ic_calendar"
         app:iconTint="@color/olive_700" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnHistorique"
+        style="@style/Widget.Zitouna.Button.Outlined"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/historique_global"
+        app:icon="@drawable/ic_history"
+        app:iconTint="@color/olive_700" />
+
     </LinearLayout>
 </ScrollView>

@@ -48,6 +48,8 @@ public class ConsoleFragment extends Fragment {
         binding.btnEnregistrerLot.setOnClickListener(v ->
                 startActivity(new android.content.Intent(requireContext(), EnregistrerLotActivity.class)));
         binding.txtAvatar.setOnClickListener(v -> openTab(R.id.nav_profil));
+        binding.btnHistorique.setOnClickListener(v ->
+                startActivity(new android.content.Intent(requireContext(), HistoriqueGlobalActivity.class)));
         return binding.getRoot();
     }
 

@@ -150,13 +150,32 @@
             tools:text="5 400 kg d'olives en attente" />
     </LinearLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnEnregistrerLot"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
-        android:text="@string/action_lot"
-        app:icon="@drawable/ic_scale" />
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEnregistrerLot"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1.4"
+            android:text="@string/action_lot"
+            app:icon="@drawable/ic_scale" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnHistorique"
+            style="@style/Widget.Zitouna.Button.Outlined"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_weight="1"
+            android:text="@string/historique"
+            app:icon="@drawable/ic_history"
+            app:iconTint="@color/olive_700" />
+    </LinearLayout>
 
     <HorizontalScrollView
         android:layout_width="match_parent"

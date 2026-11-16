@@ -117,9 +117,21 @@ terminal » à la connexion, bannière « N demandes de pressage à valider » d
 |----|-----------|----|------|-----|
 | US-17 ✅ | En tant que **gestionnaire**, je veux saisir la quantité d'huile produite ; le rendement est calculé (L / kg × 100) et le lot passe à « Prêt à récupérer ». | BF-25 | M | 3 |
 | US-18 ✅ | En tant que **gestionnaire**, je veux enregistrer la date de récupération effective d'un lot. | BF-26 | M | 2 |
-| US-19 | En tant qu'**agriculteur**, je veux consulter la quantité d'huile obtenue, le rendement et la date de récupération. | BF-14 | M | 2 |
-| US-20 | En tant qu'**agriculteur**, je veux consulter l'historique de mes passages et le bilan de campagne. | BF-15 | M | 3 |
-| US-21 | En tant que **gestionnaire**, je veux consulter l'historique global avec recherche et filtres. | BF-27 | M | 5 |
+| US-19 ✅ | En tant qu'**agriculteur**, je veux consulter la quantité d'huile obtenue, le rendement et la date de récupération. | BF-14 | M | 2 |
+| US-20 ✅ | En tant qu'**agriculteur**, je veux consulter l'historique de mes passages et le bilan de campagne. | BF-15 | M | 3 |
+| US-21 ✅ | En tant que **gestionnaire**, je veux consulter l'historique global avec recherche et filtres. | BF-27 | M | 5 |
+
+**Critères d'acceptation principaux**
+- US-17 : saisie des litres quand le lot est en traitement, rendement affiché en direct
+  (L / kg × 100), contrôle de cohérence (≤ 40 %), passage à « Prêt à récupérer », notification.
+- US-18 : date de récupération effective enregistrée une seule fois, notification.
+- US-19 : huile, rendement et date de récupération visibles sur la carte et le détail du lot.
+- US-20 : « Mes Campagnes & Lots » (maquette 6) : recherche (n° de lot, variété, parcelle,
+  sans accents), campagnes de septembre à août, bilan de la campagne (olives pesées, huile
+  extraite, rendement moyen, nombre de lots), filtres Tous / En cours / Terminés, export CSV.
+- US-21 : historique global (bouton « Historique » de la file et de la console) : recherche
+  (n° de lot, producteur, téléphone, variété), filtres de statut, de période et de variété,
+  totaux de la sélection, export CSV. Tests unitaires `LotFilterTest`.
 
 ---
 
@@ -150,6 +162,6 @@ terminal » à la connexion, bannière « N demandes de pressage à valider » d
 | Sprint 1 | Terminé | `Sprint 1 : socle Firebase, authentification, navigation par rôle et profil` |
 | Sprint 2 | Terminé | `Sprint 2 : rendez-vous, notifications et compléments des maquettes` |
 | Sprint 3 | Terminé | `Sprint 3 : lots, file d'attente et suivi des lots` |
-| Sprint 4 | À faire | |
+| Sprint 4 | Terminé | `Sprint 4 : huile produite, récupération, historiques et bilans` |
 | Sprint 5 | À faire | |
 | Sprint 6 | À faire | |

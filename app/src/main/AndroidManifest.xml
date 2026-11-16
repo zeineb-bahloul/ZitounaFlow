@@ -60,6 +60,12 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".ui.common.LotDetailActivity" android:exported="false" />
+
+        <!-- Sprint 4 : historique global -->
+        <activity
+            android:name=".ui.gestionnaire.HistoriqueGlobalActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

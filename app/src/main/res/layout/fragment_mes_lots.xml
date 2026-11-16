@@ -14,40 +14,252 @@
         android:padding="20dp">
 
     <TextView
+        android:id="@+id/txtExploitation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tracabilite"
-        android:textAppearance="@style/TextAppearance.Zitouna.Overline" />
+        android:textAppearance="@style/TextAppearance.Zitouna.Overline"
+        tools:text="Domaine Ben Salem" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/mes_lots_titre"
+        android:text="@string/mes_campagnes_titre"
         android:textAppearance="@style/TextAppearance.Zitouna.Display"
         android:textSize="26sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tracabilite_sub"
+        android:textAppearance="@style/TextAppearance.Zitouna.Body" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputRecherche"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:hint="@string/recherche_lots_agri"
+        app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/ic_search"
+        app:startIconTint="@color/muted">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:scrollbars="none">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupCampagne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:selectionRequired="true"
+            app:singleLine="true"
+            app:singleSelection="true">
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/bg_cta"
-        android:orientation="horizontal"
-        android:padding="18dp">
+        android:orientation="vertical"
+        android:padding="14dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtBilanTitre"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="serif"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                tools:text="Bilan campagne 2026/2027" />
+
+            <TextView
+                android:id="@+id/txtBilanStatut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_chip_gold"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="3dp"
+                android:textColor="@color/gold_dark"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                tools:text="EN COURS" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="4dp"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:background="@drawable/bg_chip_light"
+                android:orientation="vertical"
+                android:padding="12dp">
 
                 <TextView
-                    android:id="@+id/txtNbLots"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="serif"
-                    android:textColor="@color/white"
-                    android:textSize="22sp"
-                    tools:text="3" />
+                    android:text="OLIVES PESÉES"
+                    android:textColor="@color/gold_light"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtOlivesPesees"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        tools:text="8 920" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginBottom="3dp"
+                        android:text="kg"
+                        android:textColor="@color/olive_100"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_chip_light"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HUILE EXTRAITE"
+                    android:textColor="@color/gold_light"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtHuileExtraite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        tools:text="1 845" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginBottom="3dp"
+                        android:text="L"
+                        android:textColor="@color/olive_100"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_chip_light"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RENDEMENT MOY."
+                    android:textColor="@color/gold_light"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtRendementMoyen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        tools:text="20,7" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginBottom="3dp"
+                        android:text="%"
+                        android:textColor="@color/olive_100"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_chip_light"
+                android:orientation="vertical"
+                android:padding="12dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -56,82 +268,99 @@
                     android:textColor="@color/gold_light"
                     android:textSize="10sp"
                     android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtNbLots"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        tools:text="6" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginBottom="3dp"
+                        android:text="lots"
+                        android:textColor="@color/olive_100"
+                        android:textSize="12sp" />
+                </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txtKgTotal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="serif"
-                    android:textColor="@color/white"
-                    android:textSize="22sp"
-                    tools:text="4 200" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="KG D'OLIVES"
-                    android:textColor="@color/gold_light"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txtActifs"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="serif"
-                    android:textColor="@color/white"
-                    android:textSize="22sp"
-                    tools:text="1" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="EN COURS"
-                    android:textColor="@color/gold_light"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
+        </LinearLayout>
     </LinearLayout>
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chipGroupFiltre"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        app:selectionRequired="true"
-        app:singleSelection="true">
+        android:layout_marginTop="18dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipEnCours"
-            style="@style/Widget.Zitouna.Chip"
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lots_et_pressees"
+            android:textAppearance="@style/TextAppearance.Zitouna.Headline"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/txtNbAffiches"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/filtre_en_cours" />
+            android:textAppearance="@style/TextAppearance.Zitouna.Body"
+            android:textSize="12sp"
+            tools:text="4 affichés" />
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:scrollbars="none">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupFiltre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:selectionRequired="true"
+            app:singleLine="true"
+            app:singleSelection="true">
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipTousLots"
             style="@style/Widget.Zitouna.Chip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="true"
             android:text="@string/filtre_tous" />
 
-    </com.google.android.material.chip.ChipGroup>
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipEnCours"
+            style="@style/Widget.Zitouna.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filtre_en_cours" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipTermines"
+            style="@style/Widget.Zitouna.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filtre_termines" />
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/progress"
@@ -188,6 +417,25 @@
             android:textAppearance="@style/TextAppearance.Zitouna.Body" />
 
     </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnExporter"
+        style="@style/Widget.Zitouna.Button.Outlined"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/exporter_registre"
+        app:icon="@drawable/ic_share"
+        app:iconTint="@color/olive_700" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:text="@string/exporter_note"
+        android:textAppearance="@style/TextAppearance.Zitouna.Body"
+        android:textSize="11sp" />
 
 
     </LinearLayout>
